@@ -7,10 +7,23 @@ public abstract class Hero {
     protected int Vitality;
     protected int Magic;
     protected int Speed;
-    protected static int Balance;
+    protected static int Balance; //probably a better way to do this. I should ask Wilt
     protected int Exp;
     protected int Expcap;
-
+    protected int[] items_list; //probably a better way to do this. I should ask Wilt
+        
+    public Hero(int level, int Hpcap, int Hp, int Defence, int Vitality, int Magic, int Speed, int Balance, int Exp, int Expcap){
+        this.level = level;
+        this.Hpcap = Hpcap;
+        this.Hp = Hp;
+        this.Defence = Defence;
+        this.Vitality = Vitality;
+        this.Magic = Magic;
+        this.Speed = Speed;
+        this.Balance = Balance;
+        this.Exp = Exp;
+        this.Expcap = Expcap;
+        }
     public int getLevel(){
         return(this.level);
     }
@@ -42,5 +55,21 @@ public abstract class Hero {
     public int getExp(){
         return(this.Exp);
     }   
+
+    public void menu(){
+
+    }
+    public abstract void action(Enemy other);
+
+    public void useitem(){
+
+    }
+    public void defend(){
+
+    }
+
+    public void run(Enemy other){
+        //make it impossible to run from boss. 
+    }
 
 }
