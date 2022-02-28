@@ -50,6 +50,12 @@ public abstract class Enemy {
         return(this.Exp);
     }   
     public void attack(Hero other){
+        int result;
+        result=this.Strength-other.Defence;
+        if(result < 0){
+            result=0;
+        }
+        other.Hp=other.Hp-result;
         
     }
     public abstract void action(Hero other);

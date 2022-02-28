@@ -1,3 +1,5 @@
+import javax.naming.spi.DirStateFactory.Result;
+
 public abstract class Hero {
     protected int level;
     protected String name;
@@ -67,7 +69,13 @@ public abstract class Hero {
 
     }
     public void attack(Enemy other){
-        
+        int result;
+        result = this.Strength-other.Defence;
+        if(result < 0){
+            result=0;
+        }
+        other.Hp=other.Hp-result;
+
     }
     public abstract void action(Enemy other);
 
