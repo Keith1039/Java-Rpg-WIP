@@ -1,4 +1,3 @@
-import javax.naming.spi.DirStateFactory.Result;
 
 public abstract class Hero {
     protected int level;
@@ -118,7 +117,7 @@ public abstract class Hero {
         other.takeDamage(result);
 
     }
-    public abstract void action(Enemy other);
+    public abstract void action(String move,Enemy other);
 
     public void useitem(){
         //might use a dictionary for this

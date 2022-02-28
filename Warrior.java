@@ -8,16 +8,29 @@ public class Warrior extends Hero {
         super(level, name, status, Hpcap, Hp, Defence, Vitality, Magic, Speed, Balance, Exp, Expcap);
         this.Job="Warrior";
         //this.Growths={3,2,5,7,0,9}; I'm so changing this
-        this.gauge=0;
+        this.gauge=0; //It might be cool to make warriors stats scale with gauge. That way the player chooses between explosive dps or reliable damage?
         //this.equipment={} Start out unarmed;
     }
 
     //find a way to get dictionaries.
     //Warrior will have martial arts that use gauge. Don't make it too op me
-    public void action(Enemy other){
+    //Might add "cost" to action. Dunno yet
+    //Make a function that doesn't let player choose a move that they don't have the resources(gauge, mana, etc) to use.
+    public void action(String move,Enemy other){
         //have attack be calculated independently
+        int actual_attack=this.Strength;
+        if(move == "Heavy Slash" ){
+            this.Strength=this.Strength*2;
+            this.attack(other);
+            this.gauge=this.gauge-20; 
+        }
+        else if(move == "Heavy Slash" && this.getStatus()==Status.BERSERK ){
+            this.Strength=this.Strength*6;
+            //Make it so that this can literally hit. ANYONE, You either one shot the boss or one shot an ally. ROll the dice my friend
+        }
         
-    
+        
+        this.Strength=actual_attack;
     }
 
     public void correctGauge(){
