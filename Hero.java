@@ -72,6 +72,19 @@ public abstract class Hero {
         this.Hp=this.Hp-damage;
     }
 
+    public void getExperience(Enemy other){
+        this.Exp=this.Exp+other.getExp();
+        while(this.Exp > this.Expcap){
+            this.levelup();
+        }
+    }
+
+    public void levelup(){
+        this.level++;
+        this.Exp=this.Exp-this.Expcap;
+        this.Expcap=this.Expcap+50*this.level;
+    }
+
     public void menu(){
 
     }
