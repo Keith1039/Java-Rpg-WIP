@@ -52,12 +52,15 @@ public abstract class Enemy {
     public void attack(Hero other){
         int result;
         result=this.Strength-other.Defence;
-        if(result < 0){
-            result=0;
-        }
-        other.Hp=other.Hp-result;
+        other.takeDamage(result);
         
     }
     public abstract void action(Hero other);
 
+    public void takeDamage(int damage){
+        if (damage <0){
+            damage=0;
+        }
+        this.Hp=this.Hp-damage;
+    }
 }

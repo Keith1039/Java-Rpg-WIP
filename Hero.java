@@ -65,16 +65,20 @@ public abstract class Hero {
         return(this.Exp);
     }   
 
+    public void takeDamage(int damage){
+        if(damage < 0){
+            damage=0;
+        }
+        this.Hp=this.Hp-damage;
+    }
+
     public void menu(){
 
     }
     public void attack(Enemy other){
         int result;
         result = this.Strength-other.Defence;
-        if(result < 0){
-            result=0;
-        }
-        other.Hp=other.Hp-result;
+        other.takeDamage(result);
 
     }
     public abstract void action(Enemy other);
@@ -86,8 +90,11 @@ public abstract class Hero {
 
     }
 
-    public void run(Enemy other){
-        //make it impossible to run from boss. 
+    public boolean run(Enemy other){
+        //make it impossible to run from boss.
+        boolean result=false; 
+        //I'll probably use random for this. I have to make it so that the higher the level the lower the odds of running.
+        return(result);
     }
 
 }
