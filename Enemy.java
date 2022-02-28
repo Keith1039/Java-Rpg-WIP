@@ -10,7 +10,18 @@ public abstract class Enemy {
     protected int Speed;
     protected int Exp;
     protected int moneyget;
-
+    public Enemy(int level, String name, Status status, int Hpcap, int Hp, int Defence, int Vitality,  int Speed, int Exp, int moneyget){
+        this.level = level;
+        this.name = name;
+        this.status = status;
+        this.Hpcap = Hpcap;
+        this.Hp = Hp;
+        this.Defence = Defence;
+        this.Vitality = Vitality;
+        this.Speed = Speed;
+        this.Exp = Exp;
+        this.moneyget = moneyget;
+        }
     public int getLevel(){
         return(this.level);
     }
