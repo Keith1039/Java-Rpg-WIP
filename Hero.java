@@ -85,6 +85,30 @@ public abstract class Hero {
         this.Expcap=this.Expcap+50*this.level;
     }
 
+    //This will check the status of the party member before they're allowed to act.
+    public void checkStatus(Status condition){
+        if(condition==Status.DEAD){
+            //Can't do anything since you're dead
+        }
+        else if(condition==Status.POISONED){
+            //take a certain amount of damage based on health
+        }
+        else if(condition==Status.STUNNED){
+            //Can't do anything since you're stunned
+        }
+        else if(condition==Status.STAGGERED){
+            //Chance to miss or just not do anything increased
+            //Might mix this up later
+        }
+        else if(condition==Status.SILENCED){
+            //Cannot use "Action" command
+        }
+        else if(condition==Status.BERSERK){
+            //Fun things happen :)
+        }
+    }
+
+    //Menu for the actual player characters. Honestly this might just become it's own class.
     public void menu(){
 
     }
@@ -97,7 +121,7 @@ public abstract class Hero {
     public abstract void action(Enemy other);
 
     public void useitem(){
-
+        //might use a dictionary for this
     }
     public void defend(){
 

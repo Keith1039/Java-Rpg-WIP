@@ -5,5 +5,6 @@ public enum Status {
     STAGGERED,
     BERSERK,
     SILENCED,
+    DEAD,
     
 }
