@@ -13,9 +13,10 @@ public class Warrior extends Hero {
     }
 
     //find a way to get dictionaries.
+    //Warrior will have martial arts that use gauge. Don't make it too op me
     public void action(Enemy other){
         //have attack be calculated independently
-        int attack;
+        
     
     }
     
