@@ -1,5 +1,7 @@
 public abstract class Hero {
     protected int level;
+    protected String name;
+    protected Status status;
     protected int Hpcap;
     protected int Hp;
     protected int Strength;
@@ -12,8 +14,10 @@ public abstract class Hero {
     protected int Expcap;
     protected int[] items_list; //probably a better way to do this. I should ask Wilt
         
-    public Hero(int level, int Hpcap, int Hp, int Defence, int Vitality, int Magic, int Speed, int Balance, int Exp, int Expcap){
+    public Hero(int level, String name, Status status, int Hpcap, int Hp, int Defence, int Vitality, int Magic, int Speed, int Balance, int Exp, int Expcap){
         this.level = level;
+        this.name = name;
+        this.status = status;
         this.Hpcap = Hpcap;
         this.Hp = Hp;
         this.Defence = Defence;
@@ -26,6 +30,9 @@ public abstract class Hero {
         }
     public int getLevel(){
         return(this.level);
+    }
+    public Status getStatus(){
+        return(this.status);
     }
     public int getHpcap(){
         return(this.Hpcap);
@@ -58,6 +65,9 @@ public abstract class Hero {
 
     public void menu(){
 
+    }
+    public void attack(Enemy other){
+        
     }
     public abstract void action(Enemy other);
 
