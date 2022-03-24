@@ -1,5 +1,6 @@
+import java.lang.invoke.VolatileCallSite;
 
-public abstract class Hero {
+public abstract class Hero implements Entity {
     protected int level;
     protected String name;
     protected Status status;
@@ -10,12 +11,11 @@ public abstract class Hero {
     protected int Vitality;
     protected int Magic;
     protected int Speed;
-    protected static int Balance; //probably a better way to do this. I should ask Wilt
     protected int Exp;
     protected int Expcap;
-    protected int[] items_list; //probably a better way to do this. I should ask Wilt
+
         
-    public Hero(int level, String name, Status status, int Hpcap, int Hp, int Defence, int Vitality, int Magic, int Speed, int Balance, int Exp, int Expcap){
+    public Hero(int level, String name, Status status, int Hpcap, int Hp, int Defence, int Vitality, int Magic, int Speed, int Exp, int Expcap){
         this.level = level;
         this.name = name;
         this.status = status;
@@ -25,7 +25,6 @@ public abstract class Hero {
         this.Vitality = Vitality;
         this.Magic = Magic;
         this.Speed = Speed;
-        this.Balance = Balance;
         this.Exp = Exp;
         this.Expcap = Expcap;
         }
@@ -56,9 +55,6 @@ public abstract class Hero {
     public int getSpeed(){
         return(this.Speed);
     }
-    public int getBalance(){
-        return(this.Balance);
-    }
     
     public int getExp(){
         return(this.Exp);
@@ -85,19 +81,33 @@ public abstract class Hero {
     }
 
     //This will check the status of the party member before they're allowed to act.
-    public void checkStatus(Status condition){
+    public Boolean canAct(){
+        Status condition = this.status;
+        Boolean result = true;
         if(condition==Status.DEAD){
             //Can't do anything since you're dead
-        }
-        else if(condition==Status.POISONED){
-            //take a certain amount of damage based on health
+            result=false;
+            System.out.println(this.name+" is dead! They cannot act");
         }
         else if(condition==Status.STUNNED){
             //Can't do anything since you're stunned
+            result=false;
+            System.out.println(this.name+" is stunned! They cannot act");
         }
         else if(condition==Status.STAGGERED){
             //Chance to miss or just not do anything increased
             //Might mix this up later
+            result=false;
+            System.out.println(this.name+" has been staggered! They cannot act!");
+        }
+        return(result);
+    }
+    public void checkStatus(Status condition){
+        if(condition==Status.POISONED){
+            //take a certain amount of damage based on health
+            int damage = (int) .10*this.Hp;
+            this.takeDamage(damage);
+            System.out.println(this.name+" is poisoned and took "+Integer.toString(damage));
         }
         else if(condition==Status.SILENCED){
             //Cannot use "Action" command
@@ -111,10 +121,12 @@ public abstract class Hero {
     public void menu(){
 
     }
-    public void attack(Enemy other){
+    public void attack(Object other){
+        Enemy vilain=(Enemy) other;
         int result;
-        result = this.Strength-other.Defence;
-        other.takeDamage(result);
+
+        result = this.Strength-vilain.Defence;
+        vilain.takeDamage(result);
 
     }
     public abstract void action(String move,Enemy other);
@@ -133,4 +145,5 @@ public abstract class Hero {
         return(result);
     }
 
+    
 }

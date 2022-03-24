@@ -1,4 +1,4 @@
-public abstract class Enemy {
+public abstract class Enemy implements Entity{
     protected int level;
     protected String name;
     protected Status status;
@@ -49,13 +49,36 @@ public abstract class Enemy {
     public int getExp(){
         return(this.Exp);
     }   
-    public void attack(Hero other){
+    public void attack(Object other){
         int result;
-        result=this.Strength-other.Defence;
-        other.takeDamage(result);
+        Hero h = (Hero) other;
+        result=this.Strength-h.Defence;
+        h.takeDamage(result);
         
     }
     public abstract void action(Hero other);
+
+    public Boolean canAct(){
+        Status condition = this.status;
+        Boolean result = true;
+        if(condition==Status.DEAD){
+            //Can't do anything since you're dead
+            result=false;
+            System.out.println(this.name+" is dead! They cannot act");
+        }
+        else if(condition==Status.STUNNED){
+            //Can't do anything since you're stunned
+            result=false;
+            System.out.println(this.name+" is stunned! They cannot act");
+        }
+        else if(condition==Status.STAGGERED){
+            //Chance to miss or just not do anything increased
+            //Might mix this up later
+            result=false;
+            System.out.println(this.name+" has been staggered! They cannot act!");
+        }
+        return(result);
+    }
 
     public void takeDamage(int damage){
         if (damage <0){

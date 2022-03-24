@@ -4,8 +4,8 @@ public class Warrior extends Hero {
     private int gauge;
     private String equipment[]; //I'm thinking weapon,armor and two accesories.
 
-    public Warrior(int level,String name, Status status, int Hpcap, int Hp, int Defence, int Vitality, int Magic, int Speed, int Balance, int Exp, int Expcap,String Job){
-        super(level, name, status, Hpcap, Hp, Defence, Vitality, Magic, Speed, Balance, Exp, Expcap);
+    public Warrior(int level,String name, Status status, int Hpcap, int Hp, int Defence, int Vitality, int Magic, int Speed, int Exp, int Expcap,String Job){
+        super(level, name, status, Hpcap, Hp, Defence, Vitality, Magic, Speed, Exp, Expcap);
         this.Job="Warrior";
         //this.Growths={3,2,5,7,0,9}; I'm so changing this
         this.gauge=0; //It might be cool to make warriors stats scale with gauge. That way the player chooses between explosive dps or reliable damage?
@@ -24,6 +24,7 @@ public class Warrior extends Hero {
             this.attack(other);
             this.gauge=this.gauge-20; 
         }
+        //Just an Idea for now. Probably not gonna do this
         else if(move == "Heavy Slash" && this.getStatus()==Status.BERSERK ){
             this.Strength=this.Strength*6;
             //Make it so that this can literally hit. ANYONE, You either one shot the boss or one shot an ally. ROll the dice my friend
