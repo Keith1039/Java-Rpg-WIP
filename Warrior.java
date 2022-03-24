@@ -11,7 +11,7 @@ public class Warrior extends Hero {
         this.gauge=0; //It might be cool to make warriors stats scale with gauge. That way the player chooses between explosive dps or reliable damage?
         //this.equipment={} Start out unarmed;
     }
-
+    
     //find a way to get dictionaries.
     //Warrior will have martial arts that use gauge. Don't make it too op me
     //Might add "cost" to action. Dunno yet

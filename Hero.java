@@ -102,7 +102,8 @@ public abstract class Hero implements Entity {
         }
         return(result);
     }
-    public void checkStatus(Status condition){
+    public void checkStatus(){
+        Status condition=this.status;
         if(condition==Status.POISONED){
             //take a certain amount of damage based on health
             int damage = (int) .10*this.Hp;
@@ -111,6 +112,7 @@ public abstract class Hero implements Entity {
         }
         else if(condition==Status.SILENCED){
             //Cannot use "Action" command
+
         }
         else if(condition==Status.BERSERK){
             //Fun things happen :)
@@ -120,6 +122,7 @@ public abstract class Hero implements Entity {
     //Menu for the actual player characters. Honestly this might just become it's own class.
     public void menu(){
 
+        
     }
     public void attack(Object other){
         Enemy vilain=(Enemy) other;
