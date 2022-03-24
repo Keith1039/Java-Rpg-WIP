@@ -7,7 +7,8 @@ public class Warrior extends Hero {
     public Warrior(int level,String name, Status status, int Hpcap, int Hp, int Defence, int Vitality, int Magic, int Speed, int Exp, int Expcap,String Job){
         super(level, name, status, Hpcap, Hp, Defence, Vitality, Magic, Speed, Exp, Expcap);
         this.Job="Warrior";
-        //this.Growths={3,2,5,7,0,9}; I'm so changing this
+        int[] Growths= new int[]{3,2,5,7,0,9}; //I'm so changing this
+        this.Growths=Growths;
         this.gauge=0; //It might be cool to make warriors stats scale with gauge. That way the player chooses between explosive dps or reliable damage?
         //this.equipment={} Start out unarmed;
     }
@@ -16,12 +17,13 @@ public class Warrior extends Hero {
     //Warrior will have martial arts that use gauge. Don't make it too op me
     //Might add "cost" to action. Dunno yet
     //Make a function that doesn't let player choose a move that they don't have the resources(gauge, mana, etc) to use.
-    public void action(String move,Enemy other){
+    public void action(String move,Object other){
         //have attack be calculated independently
         int actual_attack=this.Strength;
+        Enemy opponent= (Enemy) other;
         if(move == "Heavy Slash" ){
             this.Strength=this.Strength*2;
-            this.attack(other);
+            this.attack(opponent);
             this.gauge=this.gauge-20; 
         }
         //Just an Idea for now. Probably not gonna do this
@@ -33,11 +35,18 @@ public class Warrior extends Hero {
         
         this.Strength=actual_attack;
     }
-
     public void correctGauge(){
         if(this.gauge>100){
             this.gauge=100;
         }
+    }
+    public void levelup(){
+        this.level++;
+        //deal with growths later
+        this.Strength=this.Strength+Growths[0];
+        this.Defence=this.Defence+Growths[1];
+        this.Exp=this.Exp-this.Expcap;
+        this.Expcap=this.Expcap+50*this.level;
     }
     
     

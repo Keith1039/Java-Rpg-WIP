@@ -74,11 +74,7 @@ public abstract class Hero implements Entity {
         }
     }
 
-    public void levelup(){
-        this.level++;
-        this.Exp=this.Exp-this.Expcap;
-        this.Expcap=this.Expcap+50*this.level;
-    }
+    public abstract void levelup();
 
     //This will check the status of the party member before they're allowed to act.
     public Boolean canAct(){
@@ -132,7 +128,17 @@ public abstract class Hero implements Entity {
         vilain.takeDamage(result);
 
     }
-    public abstract void action(String move,Enemy other);
+    public abstract void action(String move,Object other);
+
+    public void correctHp(){
+        if(this.Hp > this.Hpcap){
+            this.Hp=this.Hpcap;
+        }
+    }
+    public void regen(int heal ){
+        this.Hp=this.Hp+heal;
+        this.correctHp();
+    }
 
     public void useitem(){
         //might use a dictionary for this
@@ -147,6 +153,7 @@ public abstract class Hero implements Entity {
         //I'll probably use random for this. I have to make it so that the higher the level the lower the odds of running.
         return(result);
     }
+
 
     
 }
