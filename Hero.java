@@ -64,7 +64,13 @@ public abstract class Hero implements Entity {
         if(damage < 0){
             damage=0;
         }
+        else if(damage > this.Hp){
+            this.Hp=0;
+            this.setStatus(Status.DEAD);
+            damage=0;
+        }
         this.Hp=this.Hp-damage;
+        
     }
 
     public void getExperience(Enemy other){
@@ -145,6 +151,9 @@ public abstract class Hero implements Entity {
     }
     public void defend(){
 
+    }
+    public void setStatus(Status effect){
+        this.status=effect;
     }
 
     public boolean run(Enemy other){

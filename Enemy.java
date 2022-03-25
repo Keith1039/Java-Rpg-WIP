@@ -80,6 +80,10 @@ public abstract class Enemy implements Entity{
         return(result);
     }
 
+    public void setStatus(Status effect){
+        this.status=effect;
+    }
+
     public void takeDamage(int damage){
         if (damage <0){
             damage=0;

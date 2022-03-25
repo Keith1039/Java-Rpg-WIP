@@ -25,9 +25,10 @@ public class Blackmage extends Hero{
         //Just an Idea for now. Probably not gonna do this
         else if(move == "fire" && this.getStatus()==Status.BERSERK ){
             this.Magic=this.Magic*6;
-            int heal=2*this.Magic+50;
+            int damage=2*this.Magic+50;
 
             //Boosted fire that damages everyone
+            // bassically budget meteor
         }
         
         
