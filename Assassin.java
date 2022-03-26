@@ -8,7 +8,7 @@ public class Assassin extends Hero{
     private int original_strength;
     private int original_defence;
     private int original_speed;
-    public Assassin(int level,String name, Status status, int Hpcap, int Hp, int Defence, int Vitality, int Magic, int Speed, int Exp, int Expcap,String Job){
+    public Assassin(int level,String name, Status status, int Hpcap, int Hp, int Defence, int Vitality, int Magic, int Speed, int Exp, int Expcap){
         super(level, name, status, Hpcap, Hp, Defence, Vitality, Magic, Speed, Exp, Expcap);
         this.Job="Assassin";
         //this.Growths={3,2,5,7,0,9}; I'm so changing this
@@ -17,6 +17,9 @@ public class Assassin extends Hero{
         //this.equipment={} Start out unarmed;
         this.setOriginal_stats();
 
+    }
+    public Assassin(){
+        this(1,"Mark",Status.NORMAL,1,1,1,1,1,1,1,1);
     }
     public void action(String move,Object other){
         
@@ -72,9 +75,10 @@ public class Assassin extends Hero{
         int result;
         result = this.Strength-vilain.Defence;
         vilain.takeDamage(result);
+        this.Nullbuff();
         this.gain_concentration(result);
         this.correct_concentration();
-        this.Nullbuff();
+        
     }
     public void correct_concentration(){
         if(this.concentration>100){
@@ -118,11 +122,13 @@ public class Assassin extends Hero{
         this.setOriginal_stats();
         
     }
+
     public String toString(){
         String result="";
         result+="Name: "+this.name+"\n";
         result+="Job: "+this.Job+"\n";
         result+="level: "+this.level+"\n";
+        result+="Status: "+this.status.name()+"\n";
         result+="Exp: "+Integer.toString(this.Exp)+"/"+Integer.toString(this.Expcap)+"\n";
         result+="Health "+Integer.toString(this.Hp)+"/"+Integer.toString(this.Hpcap)+"\n";
         result+="Concentration: "+Integer.toString(this.concentration)+"/"+Integer.toString(100)+"\n";

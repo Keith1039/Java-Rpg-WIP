@@ -4,13 +4,17 @@ public class Warrior extends Hero {
     private int gauge;
     private String equipment[]; //I'm thinking weapon,armor and two accesories.
 
-    public Warrior(int level,String name, Status status, int Hpcap, int Hp, int Defence, int Vitality, int Magic, int Speed, int Exp, int Expcap,String Job){
+
+    public Warrior(int level,String name, Status status, int Hpcap, int Hp, int Defence, int Vitality, int Magic, int Speed, int Exp, int Expcap){
         super(level, name, status, Hpcap, Hp, Defence, Vitality, Magic, Speed, Exp, Expcap);
         this.Job="Warrior";
         int[] Growths= new int[]{3,2,5,7,0,9}; //I'm so changing this
         this.Growths=Growths;
         this.gauge=0; //It might be cool to make warriors stats scale with gauge. That way the player chooses between explosive dps or reliable damage?
         //this.equipment={} Start out unarmed;
+    }
+    public Warrior(){
+        this(1,"Mark",Status.NORMAL,1,1,1,1,1,1,1,1);
     }
     
     //find a way to get dictionaries.
@@ -53,6 +57,7 @@ public class Warrior extends Hero {
         result+="Name: "+this.name+"\n";
         result+="Job: "+this.Job+"\n";
         result+="level: "+this.level+"\n";
+        result+="Status: "+this.status.name()+"\n";
         result+="Exp: "+Integer.toString(this.Exp)+"/"+Integer.toString(this.Expcap)+"\n";
         result+="Health "+Integer.toString(this.Hp)+"/"+Integer.toString(this.Hpcap)+"\n";
         result+="Gauge: "+Integer.toString(this.gauge)+"/"+Integer.toString(100)+"\n";

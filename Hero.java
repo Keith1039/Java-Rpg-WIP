@@ -162,6 +162,9 @@ public abstract class Hero implements Entity {
         //I'll probably use random for this. I have to make it so that the higher the level the lower the odds of running.
         return(result);
     }
+    public void calculateHpcap(){
+        this.Hpcap=
+    }
 
 
     

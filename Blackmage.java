@@ -4,7 +4,7 @@ public class Blackmage extends Hero{
     private int mana;
     private int maxmana;
     private String equipment[]; //I'm thinking weapon,armor and two accesories.
-    public Blackmage(int level,String name, Status status, int Hpcap, int Hp, int Defence, int Vitality, int Magic, int Speed, int Exp, int Expcap,String Job){
+    public Blackmage(int level,String name, Status status, int Hpcap, int Hp, int Defence, int Vitality, int Magic, int Speed, int Exp, int Expcap){
         super(level, name, status, Hpcap, Hp, Defence, Vitality, Magic, Speed, Exp, Expcap);
         this.Job="Blackmage";
         //this.Growths={3,2,5,7,0,9}; I'm so changing this
@@ -12,6 +12,9 @@ public class Blackmage extends Hero{
         //this.equipment={} Start out unarmed;
         this.maxmana=100;
 
+    }
+    public Blackmage(){
+        this(1,"Mark",Status.NORMAL,1,1,1,1,1,1,1,1);
     }
     public void action(String move,Object other){
         //have attack be calculated independently
@@ -52,6 +55,7 @@ public class Blackmage extends Hero{
         result+="Name: "+this.name+"\n";
         result+="Job: "+this.Job+"\n";
         result+="level: "+this.level+"\n";
+        result+="Status: "+this.status.name()+"\n";
         result+="Exp: "+Integer.toString(this.Exp)+"/"+Integer.toString(this.Expcap)+"\n";
         result+="Health "+Integer.toString(this.Hp)+"/"+Integer.toString(this.Hpcap)+"\n";
         result+="Mana: "+Integer.toString(this.mana)+"/"+Integer.toString(this.maxmana)+"\n";
