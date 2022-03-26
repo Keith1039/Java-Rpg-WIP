@@ -10,12 +10,13 @@ public abstract class Enemy implements Entity{
     protected int Speed;
     protected int Exp;
     protected int moneyget;
-    public Enemy(int level, String name, Status status, int Hpcap, int Hp, int Defence, int Vitality,  int Speed, int Exp, int moneyget){
+    public Enemy(int level, String name, Status status, int Hpcap, int Hp, int Strength, int Defence, int Vitality,  int Speed, int Exp, int moneyget){
         this.level = level;
         this.name = name;
         this.status = status;
         this.Hpcap = Hpcap;
         this.Hp = Hp;
+        this.Strength=Strength;
         this.Defence = Defence;
         this.Vitality = Vitality;
         this.Speed = Speed;
@@ -85,9 +86,15 @@ public abstract class Enemy implements Entity{
     }
 
     public void takeDamage(int damage){
-        if (damage <0){
+        if(damage < 0){
+            damage=0;
+        }
+        else if(damage > this.Hp){
+            this.Hp=0;
+            this.setStatus(Status.DEAD);
             damage=0;
         }
         this.Hp=this.Hp-damage;
+        
     }
 }

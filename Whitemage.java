@@ -4,8 +4,8 @@ public class Whitemage extends Hero{
     private int mana;
     private int maxmana;
     private String equipment[]; //I'm thinking weapon,armor and two accesories.
-    public Whitemage(int level,String name, Status status, int Hpcap, int Hp, int Defence, int Vitality, int Magic, int Speed, int Exp, int Expcap){
-        super(level, name, status, Hpcap, Hp, Defence, Vitality, Magic, Speed, Exp, Expcap);
+    public Whitemage(int level,String name, Status status, int Hpcap, int Hp, int Strength, int Defence, int Vitality, int Magic, int Speed, int Exp, int Expcap){
+        super(level, name, status, Hpcap, Hp,Strength, Defence, Vitality, Magic, Speed, Exp, Expcap);
         this.Job="Whitemage";
         //this.Growths={3,2,5,7,0,9}; I'm so changing this
         this.mana=0; //It might be cool to make warriors stats scale with gauge. That way the player chooses between explosive dps or reliable damage?
@@ -14,7 +14,7 @@ public class Whitemage extends Hero{
 
     }
     public Whitemage(){
-        this(1,"Mark",Status.NORMAL,1,1,1,1,1,1,1,1);
+        this(1,"Mark",Status.NORMAL,1,1,1,1,1,1,1,1,1);
     }
     public void action(String move,Object other){
         //have attack be calculated independently
@@ -50,6 +50,14 @@ public class Whitemage extends Hero{
         this.Defence=this.Defence+Growths[1];
         this.Exp=this.Exp-this.Expcap;
         this.Expcap=this.Expcap+50*this.level;
+    }
+    public int find_original_Maxmana(){
+        int original_Maxmana;
+        original_Maxmana=(int)(this.maxmana-.5*this.Magic);
+        return(original_Maxmana);
+    }
+    public void calculateHpcap(){
+        this.maxmana=(int)(this.find_original_Maxmana()+.5*this.Magic);
     }
     public String toString(){
         String result="";

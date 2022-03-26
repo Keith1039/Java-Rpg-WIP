@@ -13,14 +13,16 @@ public abstract class Hero implements Entity {
     protected int Speed;
     protected int Exp;
     protected int Expcap;
+    
 
         
-    public Hero(int level, String name, Status status, int Hpcap, int Hp, int Defence, int Vitality, int Magic, int Speed, int Exp, int Expcap){
+    public Hero(int level, String name, Status status, int Hpcap, int Hp, int Strength, int Defence, int Vitality, int Magic, int Speed, int Exp, int Expcap){
         this.level = level;
         this.name = name;
         this.status = status;
         this.Hpcap = Hpcap;
         this.Hp = Hp;
+        this.Strength=Strength;
         this.Defence = Defence;
         this.Vitality = Vitality;
         this.Magic = Magic;
@@ -162,8 +164,13 @@ public abstract class Hero implements Entity {
         //I'll probably use random for this. I have to make it so that the higher the level the lower the odds of running.
         return(result);
     }
+    public int find_original_hpcap(){
+        int original_hpcap;
+        original_hpcap=(int)(this.Hpcap-.5*this.Vitality);
+        return(original_hpcap);
+    }
     public void calculateHpcap(){
-        this.Hpcap=
+        this.Hpcap=(int)(this.find_original_hpcap()+.5*this.Vitality);
     }
 
 

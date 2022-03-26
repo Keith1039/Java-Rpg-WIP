@@ -8,8 +8,8 @@ public class Assassin extends Hero{
     private int original_strength;
     private int original_defence;
     private int original_speed;
-    public Assassin(int level,String name, Status status, int Hpcap, int Hp, int Defence, int Vitality, int Magic, int Speed, int Exp, int Expcap){
-        super(level, name, status, Hpcap, Hp, Defence, Vitality, Magic, Speed, Exp, Expcap);
+    public Assassin(int level,String name, Status status, int Hpcap, int Hp, int Strength, int Defence, int Vitality, int Magic, int Speed, int Exp, int Expcap){
+        super(level, name, status, Hpcap, Hp, Strength, Defence, Vitality, Magic, Speed, Exp, Expcap);
         this.Job="Assassin";
         //this.Growths={3,2,5,7,0,9}; I'm so changing this
         //concentration boosts stats
@@ -19,7 +19,7 @@ public class Assassin extends Hero{
 
     }
     public Assassin(){
-        this(1,"Mark",Status.NORMAL,1,1,1,1,1,1,1,1);
+        this(1,"Mark",Status.NORMAL,1,1000,1000,1,1,1,1,1,1);
     }
     public void action(String move,Object other){
         
@@ -132,11 +132,11 @@ public class Assassin extends Hero{
         result+="Exp: "+Integer.toString(this.Exp)+"/"+Integer.toString(this.Expcap)+"\n";
         result+="Health "+Integer.toString(this.Hp)+"/"+Integer.toString(this.Hpcap)+"\n";
         result+="Concentration: "+Integer.toString(this.concentration)+"/"+Integer.toString(100)+"\n";
-        result+="Strength: "+Integer.toString(this.Strength)+"("+Integer.toString((int).5*this.concentration)+")"+"\n";
-        result+="Defence: "+Integer.toString(this.Defence)+"("+Integer.toString((int).5*this.concentration)+")"+"\n";
+        result+="Strength: "+Integer.toString(this.Strength)+"(+"+Integer.toString((int)(.5*this.concentration))+")"+"\n";
+        result+="Defence: "+Integer.toString(this.Defence)+"(+"+Integer.toString((int)(.5*this.concentration))+")"+"\n";
         result+="Vitality: "+Integer.toString(this.Vitality)+"\n";
         result+="Magic: "+Integer.toString(this.Magic)+"\n";
-        result+="Speed: "+Integer.toString(this.Speed)+"("+Integer.toString((int).5*this.concentration)+")"+"\n";
+        result+="Speed: "+Integer.toString(this.Speed)+"(+"+Integer.toString((int)(.5*this.concentration))+")"+"\n";
         
         return(result);
     }
