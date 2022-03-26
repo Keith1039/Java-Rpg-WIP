@@ -51,7 +51,11 @@ public class Assassin extends Hero{
         this.Strength=(int)(this.original_strength+.5*this.concentration);
         this.Defence=(int)(this.original_defence+.5*this.concentration);
         this.Speed=(int)(this.original_speed+.5*this.concentration);
-
+    }
+    public void Nullbuff(){
+        this.Strength=(int)(this.original_strength-.5*this.concentration);
+        this.Defence=(int)(this.original_defence-.5*this.concentration);
+        this.Speed=(int)(this.original_speed-.5*this.concentration);
     }
     public void setOriginal_stats(){
         this.original_strength=this.Strength;
@@ -70,6 +74,7 @@ public class Assassin extends Hero{
         vilain.takeDamage(result);
         this.gain_concentration(result);
         this.correct_concentration();
+        this.Nullbuff();
     }
     public void correct_concentration(){
         if(this.concentration>100){
@@ -84,6 +89,7 @@ public class Assassin extends Hero{
         this.correct_concentration();
     }
     public void takeDamage(int damage){
+        this.Nullbuff();
         if(damage < 0){
             damage=0;
         }
@@ -95,6 +101,7 @@ public class Assassin extends Hero{
         this.Hp=this.Hp-damage;
         this.lose_concentration(damage);
         this.Applybuff();
+    
         
     }
     public void lose_concentration(int damage){
@@ -110,6 +117,22 @@ public class Assassin extends Hero{
         this.Expcap=this.Expcap+50*this.level;
         this.setOriginal_stats();
         
+    }
+    public String toString(){
+        String result="";
+        result+="Name: "+this.name+"\n";
+        result+="Job: "+this.Job+"\n";
+        result+="level: "+this.level+"\n";
+        result+="Exp: "+Integer.toString(this.Exp)+"/"+Integer.toString(this.Expcap)+"\n";
+        result+="Health "+Integer.toString(this.Hp)+"/"+Integer.toString(this.Hpcap)+"\n";
+        result+="Concentration: "+Integer.toString(this.concentration)+"/"+Integer.toString(100)+"\n";
+        result+="Strength: "+Integer.toString(this.Strength)+"("+Integer.toString((int).5*this.concentration)+")"+"\n";
+        result+="Defence: "+Integer.toString(this.Defence)+"("+Integer.toString((int).5*this.concentration)+")"+"\n";
+        result+="Vitality: "+Integer.toString(this.Vitality)+"\n";
+        result+="Magic: "+Integer.toString(this.Magic)+"\n";
+        result+="Speed: "+Integer.toString(this.Speed)+"("+Integer.toString((int).5*this.concentration)+")"+"\n";
+        
+        return(result);
     }
     
     

@@ -48,6 +48,22 @@ public class Whitemage extends Hero{
         this.Exp=this.Exp-this.Expcap;
         this.Expcap=this.Expcap+50*this.level;
     }
+    public String toString(){
+        String result="";
+        result+="Name: "+this.name+"\n";
+        result+="Job: "+this.Job+"\n";
+        result+="level: "+this.level+"\n";
+        result+="Exp: "+Integer.toString(this.Exp)+"/"+Integer.toString(this.Expcap)+"\n";
+        result+="Health "+Integer.toString(this.Hp)+"/"+Integer.toString(this.Hpcap)+"\n";
+        result+="Mana: "+Integer.toString(this.mana)+"/"+Integer.toString(this.maxmana)+"\n";
+        result+="Strength: "+Integer.toString(this.Strength)+"\n";
+        result+="Defence: "+Integer.toString(this.Defence)+"\n";
+        result+="Vitality: "+Integer.toString(this.Vitality)+"\n";
+        result+="Magic: "+Integer.toString(this.Magic)+"\n";
+        result+="Speed: "+Integer.toString(this.Speed)+"\n";
+        
+        return(result);
+    }
     
     
 }
