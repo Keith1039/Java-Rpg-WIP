@@ -6,6 +6,10 @@ public class Node {
         this.value = value;
         this.Next=Next;
     }
+    public Node(){
+        this.value=null;
+        this.Next=null;
+    }
 
     public Node getNext(){
         return(this.Next);
@@ -15,6 +19,9 @@ public class Node {
     }
     public void setNext(Node other){
         this.Next=other;
+    }
+    public void setValue(Object value){
+        this.value=value;
     }
     
     

@@ -1,16 +1,14 @@
-public class NodeStack implements Stack {
+public class Linkedlist implements Stack {
     private Node top;
-    private Node[] nodelist;
     private Node first;
 
-    public NodeStack(){
-        nodelist=new Node[1];
+    public Linkedlist(){
+        first=new Node();
+        top=first;
     }
     public void push(Object other){
-        if(nodelist[0]==null){
-            first=new Node(other,null);
-            top=first;
-            nodelist[0]=first;
+        if(IsEmpty()==true){
+            first.setValue(other);
         }
         else{
         Node nextnode=new Node(other,null);
@@ -21,7 +19,7 @@ public class NodeStack implements Stack {
 
     
     public boolean IsEmpty(){
-        return(nodelist[0]==null);
+        return(top==first);
     }
     
     public Object peek(){
@@ -30,14 +28,14 @@ public class NodeStack implements Stack {
 
     
     public Object pop(){
-        Node returnable;
+        Object returnable;
         if(IsEmpty()==true){
             return(null);
         }else{
             if(top==first){
-                returnable=first;
-                nodelist[0]=null;
-                top=null;
+                returnable=first.getValue();
+                first.setNext(null);
+                first.setValue(null);
             }
             else{
             returnable=top;
@@ -45,18 +43,29 @@ public class NodeStack implements Stack {
             top.setNext(null);
             }
         }
-        return(returnable.getValue());
+        return(returnable);
     }
+    
     public Node newTop(){
         Node CurrentNode;
         Node right_before;
-        CurrentNode=nodelist[0];
+        CurrentNode=first;
         right_before=CurrentNode;
         while(CurrentNode.getNext()!=null){
             right_before=CurrentNode;
             CurrentNode=CurrentNode.getNext();
         }
         return(right_before);
+    }
+    //I mean... this'll work for ints but not other stuff..... Shuffle stack here we gooo
+    public String toString(){
+        String returnable="[ ";
+        Node CurrentNode=first;
+        while(CurrentNode.getNext()!=null){
+
+        }
+
+        return(returnable);
     }
     
 
