@@ -14,7 +14,7 @@ public class Warrior extends Hero {
         //this.equipment={} Start out unarmed;
     }
     public Warrior(){
-        this(1,"Mark",Status.NORMAL,1,1,1,1,1,1,1,1,1);
+        this(1,"Mark",Status.NORMAL,1,1,1,1,1,1,5,1,1);
     }
     
     //find a way to get dictionaries.

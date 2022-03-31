@@ -19,7 +19,7 @@ public class Assassin extends Hero{
 
     }
     public Assassin(){
-        this(1,"Mark",Status.NORMAL,1,1000,1000,1,1,1,1,1,1);
+        this(1,"Des",Status.NORMAL,1,1000,1000,1,1,1,6,1,1);
     }
     public void action(String move,Object other){
         

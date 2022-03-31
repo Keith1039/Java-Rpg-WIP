@@ -6,16 +6,17 @@ public class Linkedlist implements Stack {
         first=null;
         top=first;
     }
-    public void push(Node<Entity> other){
+    public void push(Entity other){
+        Node<Entity> other2= new Node<Entity>(other, null);
         if(IsEmpty()==true){
-            first= other;
+            first= other2;
             top=first;
         }
         else{
-        if(first.getSpeed()<=other.getSpeed()){
-            first.setPrevious(other);
-            other.setNext(first);
-            first=other;
+        if(first.getSpeed()<=other2.getSpeed()){
+            first.setPrevious(other2);
+            other2.setNext(first);
+            first=other2;
         }
         else{
             int j=0;
@@ -23,22 +24,22 @@ public class Linkedlist implements Stack {
             Node<Entity> right_before;
             CurrentNode=first;
             right_before=CurrentNode;
-            while(CurrentNode.getNext()!=null && CurrentNode.getSpeed()>other.getSpeed()){
+            while(CurrentNode.getNext()!=null && CurrentNode.getSpeed()>other2.getSpeed()){
                 right_before=CurrentNode;
                 CurrentNode=CurrentNode.getNext();
                 if(CurrentNode.getNext()==null){
                     j=1;
                 }
             }
-            if(j==1){
-                CurrentNode.setNext(other);
-                other.setPrevious(CurrentNode);
+            if(j==1&&CurrentNode.getSpeed()>other2.getSpeed()){
+                CurrentNode.setNext(other2);
+                other2.setPrevious(CurrentNode);
             }
             else{
-                other.setNext(CurrentNode);
-                other.setPrevious(right_before);
-                CurrentNode.setPrevious(other);
-                right_before.setNext(other);
+                other2.setNext(CurrentNode);
+                other2.setPrevious(right_before);
+                CurrentNode.setPrevious(other2);
+                right_before.setNext(other2);
             }
         }
         }
@@ -93,12 +94,9 @@ public class Linkedlist implements Stack {
             returnable+=CurrentNode.toString()+", ";
             CurrentNode=CurrentNode.getNext();
         }
+        returnable+=CurrentNode.toString();
         returnable+="]";
         return(returnable);
     }
-    
-
-    
-
     
 }

@@ -14,7 +14,7 @@ public class Whitemage extends Hero{
 
     }
     public Whitemage(){
-        this(1,"Mark",Status.NORMAL,1,1,1,1,1,1,1,1,1);
+        this(1,"helena",Status.NORMAL,1,1,1,1,1,1,1,1,1);
     }
     public void action(String move,Object other){
         //have attack be calculated independently

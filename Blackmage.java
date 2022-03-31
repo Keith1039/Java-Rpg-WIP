@@ -14,7 +14,7 @@ public class Blackmage extends Hero{
 
     }
     public Blackmage(){
-        this(1,"Mark",Status.NORMAL,1,1,1,1,1,1,1,1,1);
+        this(1,"Ried",Status.NORMAL,1,1,1,1,1,1,2,1,1);
     }
     public void action(String move,Object other){
         //have attack be calculated independently
