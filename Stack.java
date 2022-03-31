@@ -1,8 +1,8 @@
-public interface Stack {
+public interface Stack{ //customize for game
     
     public boolean IsEmpty();
-    public Object peek();
-    public void push(Object other);
-    public Object pop();
+    public Entity peek();
+    public void push(Node<Entity> other);
+    public Entity pop();
 
 }

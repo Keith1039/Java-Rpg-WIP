@@ -1,51 +1,78 @@
 public class Linkedlist implements Stack {
-    private Node top;
-    private Node first;
+    private Node<Entity> top;
+    private Node<Entity> first;
 
     public Linkedlist(){
-        first=new Node();
+        first=null;
         top=first;
     }
-    public void push(Object other){
+    public void push(Node<Entity> other){
         if(IsEmpty()==true){
-            first.setValue(other);
+            first= other;
+            top=first;
         }
         else{
-        Node nextnode=new Node(other,null);
-        top.setNext(nextnode);
-        top=nextnode;
+        if(first.getSpeed()<=other.getSpeed()){
+            first.setPrevious(other);
+            other.setNext(first);
+            first=other;
+        }
+        else{
+            int j=0;
+            Node<Entity> CurrentNode;
+            Node<Entity> right_before;
+            CurrentNode=first;
+            right_before=CurrentNode;
+            while(CurrentNode.getNext()!=null && CurrentNode.getSpeed()>other.getSpeed()){
+                right_before=CurrentNode;
+                CurrentNode=CurrentNode.getNext();
+                if(CurrentNode.getNext()==null){
+                    j=1;
+                }
+            }
+            if(j==1){
+                CurrentNode.setNext(other);
+                other.setPrevious(CurrentNode);
+            }
+            else{
+                other.setNext(CurrentNode);
+                other.setPrevious(right_before);
+                CurrentNode.setPrevious(other);
+                right_before.setNext(other);
+            }
+        }
         }
     }
 
     
     public boolean IsEmpty(){
-        return(top==first);
+        return(first==null);
     }
     
-    public Object peek(){
-        return(top.getValue());
+    public Entity peek(){
+        return(top.getEntity());
     }
 
     
-    public Object pop(){
-        Object returnable;
+    public Entity pop(){
+        Entity returnable;
         if(IsEmpty()==true){
             return(null);
         }else{
-            if(top==first){
-                returnable=first.getValue();
-                first.setNext(null);
-                first.setValue(null);
+            if(first.getNext()==null){
+                returnable=first.getEntity();
+                first=null;
             }
             else{
-            returnable=top;
-            top=newTop();
-            top.setNext(null);
+            Node<Entity> ref = first.getNext();
+            ref.setPrevious(null);
+            returnable=first.getEntity();
+            first=ref;
             }
         }
         return(returnable);
     }
-    
+    /*
     public Node newTop(){
         Node CurrentNode;
         Node right_before;
@@ -57,14 +84,16 @@ public class Linkedlist implements Stack {
         }
         return(right_before);
     }
+    */
     //I mean... this'll work for ints but not other stuff..... Shuffle stack here we gooo
     public String toString(){
         String returnable="[ ";
-        Node CurrentNode=first;
+        Node<Entity> CurrentNode=first;
         while(CurrentNode.getNext()!=null){
-
+            returnable+=CurrentNode.toString()+", ";
+            CurrentNode=CurrentNode.getNext();
         }
-
+        returnable+="]";
         return(returnable);
     }
     
