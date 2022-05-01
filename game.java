@@ -10,14 +10,7 @@ public class game{
         test_assassin.attack(test_Goblin);
         System.out.println(test_assassin);
         */
-        Random random = new Random();
-        random.nextInt(10);
-        for(int i=0;i<20;i++){
-
         
-        System.out.println(random.nextInt(10));
-        }
-        /*
         Warrior mark= new Warrior();          //2nd
         Whitemage helena= new Whitemage();    // 4th
         Blackmage Ried = new Blackmage();     //3rd
@@ -29,9 +22,9 @@ public class game{
         turns.push(Ried);
         turns.push(mark);
 
-
+        
         System.out.println(turns);
-        */
+        
 
     }
 }

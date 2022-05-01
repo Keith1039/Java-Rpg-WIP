@@ -27,7 +27,7 @@ public class Assassin extends Hero{
         int actual_strength=this.Strength;
         
         Enemy opponent = (Enemy) other;
-        if(move == "Poison blade" && this.concentration>20){
+        if(move == "Poison Blade" && this.concentration>20){
             int damage = (int) (this.concentration*.7+this.Strength);
             opponent.takeDamage(damage);
             opponent.setStatus(Status.POISONED);
@@ -35,12 +35,13 @@ public class Assassin extends Hero{
 
         }
         
-        else if(move == "poison blade" && this.getStatus()==Status.BERSERK && this.concentration>20 ){
+        else if(move == "Poisoned Blade" && this.getStatus()==Status.BERSERK && this.concentration>20 ){
             int damage = (int) (this.concentration*.95+this.Strength);
             Entity victim = this.random_attack(targets);
             damage=damage-victim.getDefence();
+            System.out.println(this.name+" "+"Used Venom Edge on "+victim.getName()+"!");
             victim.takeDamage(damage);
-            victim.setStatus(status.POISONED);
+            victim.setStatus(Status.POISONED);
             this.gain_concentration(damage);
             
             //make it able to hit anyone, maybe not themselves tho?

@@ -16,7 +16,7 @@ public class Blackmage extends Hero{
     public Blackmage(){
         this(1,"Ried",Status.NORMAL,1,1,1,1,1,1,2,1,1);
     }
-    public void action(String move,Object other,Entity[] target){
+    public void action(String move,Object other,Entity[] targets){
         //have attack be calculated independently
         int actual_magic=this.Magic;
         Enemy opponent = (Enemy) other;
@@ -27,8 +27,17 @@ public class Blackmage extends Hero{
         }
         //Just an Idea for now. Probably not gonna do this
         else if(move == "fire" && this.getStatus()==Status.BERSERK ){
-            this.Magic=this.Magic*6;
-            int damage=2*this.Magic+50;
+            Entity victim = this.random_attack(targets);
+            Entity victim2 = this.random_attack(targets);
+            this.Magic=this.Magic*3;
+            int damage1=this.Magic;
+            damage1=damage1-victim.getDefence();
+            int damage2=this.Magic;
+            damage2=damage2-victim2.getDefence();
+            System.out.println(this.name+' '+"Used Flame torrent on "+victim.getName() +" and"+victim2.getName()+"!");
+            victim.takeDamage(damage1);
+            victim2.takeDamage(damage2);
+
 
             //Boosted fire that damages everyone
             // bassically budget meteor
