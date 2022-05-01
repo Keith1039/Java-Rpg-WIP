@@ -34,6 +34,9 @@ public abstract class Hero implements Entity {
     public int getLevel(){
         return(this.level);
     }
+    public String getName(){
+        return(this.name);
+    }
     public Status getStatus(){
         return(this.status);
     }
@@ -72,6 +75,7 @@ public abstract class Hero implements Entity {
             this.setStatus(Status.DEAD);
             damage=0;
         }
+        System.out.println(this.name+' '+"took "+Integer.toString(damage)+" damage!");
         this.Hp=this.Hp-damage;
         
     }
@@ -152,6 +156,7 @@ public abstract class Hero implements Entity {
     }
     public void regen(int heal ){
         this.Hp=this.Hp+heal;
+        System.out.println(this.name+' '+"healed "+Integer.toString(heal)+" HP!");
         this.correctHp();
     }
 

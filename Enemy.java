@@ -7,10 +7,11 @@ public abstract class Enemy implements Entity{
     protected int Strength;
     protected int Defence;
     protected int Vitality;
+    protected int Magic;
     protected int Speed;
     protected int Exp;
     protected int moneyget;
-    public Enemy(int level, String name, Status status, int Hpcap, int Hp, int Strength, int Defence, int Vitality,  int Speed, int Exp, int moneyget){
+    public Enemy(int level, String name, Status status, int Hpcap, int Hp, int Strength, int Defence, int Vitality, int Magic,  int Speed, int Exp, int moneyget){
         this.level = level;
         this.name = name;
         this.status = status;
@@ -19,12 +20,16 @@ public abstract class Enemy implements Entity{
         this.Strength=Strength;
         this.Defence = Defence;
         this.Vitality = Vitality;
+        this.Magic = Magic;
         this.Speed = Speed;
         this.Exp = Exp;
         this.moneyget = moneyget;
         }
     public int getLevel(){
         return(this.level);
+    }
+    public String getName(){
+        return(this.name);
     }
     public Status getStatus(){
         return(this.status);
@@ -44,12 +49,16 @@ public abstract class Enemy implements Entity{
      public int getVitality(){
         return(this.Vitality);
     }   
+    public int getMagic(){
+        return(this.Magic);
+    }
     public int getSpeed(){
         return(this.Speed);
     }
     public int getExp(){
         return(this.Exp);
     }   
+
     public void attack(Object other){
         int result;
         Hero h = (Hero) other;
@@ -94,6 +103,7 @@ public abstract class Enemy implements Entity{
             this.setStatus(Status.DEAD);
             damage=0;
         }
+        System.out.println(this.name+' '+"took "+Integer.toString(damage)+" damage!");
         this.Hp=this.Hp-damage;
         
     }

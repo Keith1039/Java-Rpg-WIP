@@ -33,8 +33,15 @@ public class Warrior extends Hero {
         }
         //Just an Idea for now. Probably not gonna do this
         else if(move == "Heavy Slash" && this.getStatus()==Status.BERSERK ){
+            
+            Entity victim;
             this.Strength=this.Strength*6;
-            this.random_attack(targets);
+            int damage=this.Strength;
+            victim=this.random_attack(targets);
+            damage=damage-victim.getDefence();
+            System.out.println(this.name+' '+"used Berserk Slash on"+victim.getName());
+            victim.takeDamage(damage);
+            
             //Make it so that this can literally hit. ANYONE, You either one shot the boss or one shot an ally. ROll the dice my friend
         }
         

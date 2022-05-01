@@ -16,23 +16,26 @@ public class Whitemage extends Hero{
     public Whitemage(){
         this(1,"helena",Status.NORMAL,1,1,1,1,1,1,1,1,1);
     }
-    public void action(String move,Object other,Entity[] target){
+    public void action(String move,Object other,Entity[] targets){
         //have attack be calculated independently
         int actual_magic=this.Magic;
         Hero ally = (Hero) other;
         if(move == "Light Heal" ){
-            System.out.println(this.name+' '+"used Light Heal ");
+            System.out.println(this.name+' '+"used Light Heal on "+ally.name);
             int heal = 2*this.Magic+50;
             ally.regen(heal);
 
         }
         //Just an Idea for now. Probably not gonna do this
         else if(move == "Light Heal" && this.getStatus()==Status.BERSERK ){
-            System.out.println(this.name+' '+"used Inverse Heal!");
+            Entity victim = this.random_attack(targets);
+            System.out.println(this.name+' '+"used Inverse Heal on "+victim.getName());
             this.Magic=this.Magic*6;
             int heal=2*this.Magic+50;
+            heal=heal-victim.getDefence();
             this.regen(heal);
-            Entity victim;
+            victim.takeDamage(heal);
+            
 
             //does the opposite of healing and drains their hp. Problem is it can happen to anyone. Don't know who
         }

@@ -38,6 +38,7 @@ public class Assassin extends Hero{
         else if(move == "poison blade" && this.getStatus()==Status.BERSERK && this.concentration>20 ){
             int damage = (int) (this.concentration*.95+this.Strength);
             Entity victim = this.random_attack(targets);
+            damage=damage-victim.getDefence();
             victim.takeDamage(damage);
             victim.setStatus(status.POISONED);
             this.gain_concentration(damage);
