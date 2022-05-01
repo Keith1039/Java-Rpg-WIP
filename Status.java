@@ -7,6 +7,5 @@ public enum Status {
     BERSERK,
     SILENCED,
     DEAD,
-    
 }
 

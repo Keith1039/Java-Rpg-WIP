@@ -1,3 +1,4 @@
+
 public class Warrior extends Hero {
     private String Job;
     private int[] Growths;
@@ -21,7 +22,7 @@ public class Warrior extends Hero {
     //Warrior will have martial arts that use gauge. Don't make it too op me
     //Might add "cost" to action. Dunno yet
     //Make a function that doesn't let player choose a move that they don't have the resources(gauge, mana, etc) to use.
-    public void action(String move,Object other){
+    public void action(String move,Object other,Entity[] targets){
         //have attack be calculated independently
         int actual_attack=this.Strength;
         Enemy opponent= (Enemy) other;
@@ -33,6 +34,7 @@ public class Warrior extends Hero {
         //Just an Idea for now. Probably not gonna do this
         else if(move == "Heavy Slash" && this.getStatus()==Status.BERSERK ){
             this.Strength=this.Strength*6;
+            this.random_attack(targets);
             //Make it so that this can literally hit. ANYONE, You either one shot the boss or one shot an ally. ROll the dice my friend
         }
         

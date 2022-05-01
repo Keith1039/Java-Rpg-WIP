@@ -21,7 +21,7 @@ public class Assassin extends Hero{
     public Assassin(){
         this(1,"Des",Status.NORMAL,1,1000,1000,1,1,1,6,1,1);
     }
-    public void action(String move,Object other){
+    public void action(String move,Object other,Entity[] targets){
         
         //have attack be calculated independently
         int actual_strength=this.Strength;
@@ -35,9 +35,14 @@ public class Assassin extends Hero{
 
         }
         
-        else if(move == "Poison blade" && this.getStatus()==Status.BERSERK && this.concentration>20 ){
+        else if(move == "poison blade" && this.getStatus()==Status.BERSERK && this.concentration>20 ){
             int damage = (int) (this.concentration*.95+this.Strength);
-            //make it able to hit anyone
+            Entity victim = this.random_attack(targets);
+            victim.takeDamage(damage);
+            victim.setStatus(status.POISONED);
+            this.gain_concentration(damage);
+            
+            //make it able to hit anyone, maybe not themselves tho?
             /*
             opponent.takeDamage(damage);
             opponent.setStatus(Status.POISONED);

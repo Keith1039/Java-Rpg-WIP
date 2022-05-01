@@ -16,7 +16,7 @@ public class Blackmage extends Hero{
     public Blackmage(){
         this(1,"Ried",Status.NORMAL,1,1,1,1,1,1,2,1,1);
     }
-    public void action(String move,Object other){
+    public void action(String move,Object other,Entity[] target){
         //have attack be calculated independently
         int actual_magic=this.Magic;
         Enemy opponent = (Enemy) other;

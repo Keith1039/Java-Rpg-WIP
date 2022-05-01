@@ -1,4 +1,5 @@
 import java.lang.invoke.VolatileCallSite;
+import java.util.Random;
 
 public abstract class Hero implements Entity {
     protected int level;
@@ -128,6 +129,12 @@ public abstract class Hero implements Entity {
 
         
     }
+    public Entity random_attack(Entity[] targets){
+        Random random = new Random();
+        Entity target= targets[random.nextInt(targets.length)];
+        return(target);
+        
+    }
     public void attack(Object other){
         Enemy vilain=(Enemy) other;
         int result;
@@ -136,7 +143,7 @@ public abstract class Hero implements Entity {
         vilain.takeDamage(result);
 
     }
-    public abstract void action(String move,Object other);
+    public abstract void action(String move,Object other, Entity[] targets);
 
     public void correctHp(){
         if(this.Hp > this.Hpcap){
