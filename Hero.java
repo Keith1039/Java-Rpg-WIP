@@ -14,6 +14,8 @@ public abstract class Hero implements Entity {
     protected int Speed;
     protected int Exp;
     protected int Expcap;
+    protected String[] Movelist;
+    protected MoveLinkedList Moves;
     
 
         
@@ -73,10 +75,17 @@ public abstract class Hero implements Entity {
         else if(damage > this.Hp){
             this.Hp=0;
             this.setStatus(Status.DEAD);
-            damage=0;
+
         }
+        else if(damage==((int)(.20*this.Hpcap)) && this.getStatus()==Status.CHARGED){
+            this.setStatus(Status.STAGGERED);
+            System.out.println(this.name+' '+"Was caught off guard!");
+        }
+        
         System.out.println(this.name+' '+"took "+Integer.toString(damage)+" damage!");
         this.Hp=this.Hp-damage;
+        this.correctHp();;
+        
         
     }
 
@@ -153,6 +162,9 @@ public abstract class Hero implements Entity {
         if(this.Hp > this.Hpcap){
             this.Hp=this.Hpcap;
         }
+        else if(this.Hp<0){
+            this.Hp=0;
+        }
     }
     public void regen(int heal ){
         this.Hp=this.Hp+heal;
@@ -183,6 +195,11 @@ public abstract class Hero implements Entity {
     }
     public void calculateHpcap(){
         this.Hpcap=(int)(this.find_original_hpcap()+.5*this.Vitality);
+    }
+
+    public String printMovelist(){
+        String res=this.Movelist.toString();
+        return(res);
     }
 
 

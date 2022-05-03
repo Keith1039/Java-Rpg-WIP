@@ -4,6 +4,8 @@ public class Blackmage extends Hero{
     private int mana;
     private int maxmana;
     private String equipment[]; //I'm thinking weapon,armor and two accesories.
+    private String[] Movelist;
+
     public Blackmage(int level,String name, Status status, int Hpcap, int Hp,int Strength, int Defence, int Vitality, int Magic, int Speed, int Exp, int Expcap){
         super(level, name, status, Hpcap, Hp, Strength, Defence, Vitality, Magic, Speed, Exp, Expcap);
         this.Job="Blackmage";
@@ -11,6 +13,8 @@ public class Blackmage extends Hero{
         this.mana=0; //It might be cool to make warriors stats scale with gauge. That way the player chooses between explosive dps or reliable damage?
         //this.equipment={} Start out unarmed;
         this.maxmana=100;
+        this.Movelist=new String[]{"Fire","Storm","Madness Enchant"};
+        this.Moves=new MoveLinkedList();
 
     }
     public Blackmage(){
@@ -20,13 +24,13 @@ public class Blackmage extends Hero{
         //have attack be calculated independently
         int actual_magic=this.Magic;
         Enemy opponent = (Enemy) other;
-        if(move == "fire" ){
+        if(move == "Fire" ){
             int damage = 2*this.Magic+50;
             opponent.takeDamage(damage);
 
         }
         //Just an Idea for now. Probably not gonna do this
-        else if(move == "fire" && this.getStatus()==Status.BERSERK ){
+        else if(move == "Fire" && this.getStatus()==Status.BERSERK ){
             Entity victim = this.random_attack(targets);
             Entity victim2 = this.random_attack(targets);
             this.Magic=this.Magic*3;

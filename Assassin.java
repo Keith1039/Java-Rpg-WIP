@@ -8,6 +8,7 @@ public class Assassin extends Hero{
     private int original_strength;
     private int original_defence;
     private int original_speed;
+
     public Assassin(int level,String name, Status status, int Hpcap, int Hp, int Strength, int Defence, int Vitality, int Magic, int Speed, int Exp, int Expcap){
         super(level, name, status, Hpcap, Hp, Strength, Defence, Vitality, Magic, Speed, Exp, Expcap);
         this.Job="Assassin";
@@ -16,6 +17,8 @@ public class Assassin extends Hero{
         this.concentration=0; 
         //this.equipment={} Start out unarmed;
         this.setOriginal_stats();
+        this.Movelist=new String[]{"Poison Blade","Knife Volley","Dies Eres"};
+        this.Moves=new MoveLinkedList();
 
     }
     public Assassin(){

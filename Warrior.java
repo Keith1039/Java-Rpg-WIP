@@ -4,6 +4,7 @@ public class Warrior extends Hero {
     private int[] Growths;
     private int gauge;
     private String equipment[]; //I'm thinking weapon,armor and two accesories.
+    //private String[] Movelist;
 
 
     public Warrior(int level,String name, Status status, int Hpcap, int Hp, int Strength, int Defence, int Vitality, int Magic, int Speed, int Exp, int Expcap){
@@ -13,6 +14,8 @@ public class Warrior extends Hero {
         this.Growths=Growths;
         this.gauge=0; //It might be cool to make warriors stats scale with gauge. That way the player chooses between explosive dps or reliable damage?
         //this.equipment={} Start out unarmed;
+        this.Movelist= new String[]{"Heavy Slash","Undying Body","Tempest strike"};
+        this.Moves=new MoveLinkedList();
     }
     public Warrior(){
         this(1,"Mark",Status.NORMAL,1,1,1,1,1,1,5,1,1);

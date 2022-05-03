@@ -87,6 +87,7 @@ public class Linkedlist implements Stack {
     }
     */
     //I mean... this'll work for ints but not other stuff..... Shuffle stack here we gooo
+    //Make an iterator fool
     public String toString(){
         String returnable="[ ";
         Node<Entity> CurrentNode=first;

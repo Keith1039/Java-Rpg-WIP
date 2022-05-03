@@ -4,7 +4,7 @@ public class TestDummy extends Enemy{
         
     }
     public TestDummy(){
-        this(9999,"Goburin",Status.NORMAL,99999999,9999999,1,0,1,1,1,1,1);
+        this(9999,"Test dummy",Status.NORMAL,99999999,9999999,1,0,1,1,1,1,1);
     }
 
     public void action(Hero other){

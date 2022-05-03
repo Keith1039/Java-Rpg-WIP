@@ -4,6 +4,7 @@ public class Whitemage extends Hero{
     private int mana;
     private int maxmana;
     private String equipment[]; //I'm thinking weapon,armor and two accesories.
+
     public Whitemage(int level,String name, Status status, int Hpcap, int Hp, int Strength, int Defence, int Vitality, int Magic, int Speed, int Exp, int Expcap){
         super(level, name, status, Hpcap, Hp,Strength, Defence, Vitality, Magic, Speed, Exp, Expcap);
         this.Job="Whitemage";
@@ -11,6 +12,8 @@ public class Whitemage extends Hero{
         this.mana=0; //It might be cool to make warriors stats scale with gauge. That way the player chooses between explosive dps or reliable damage?
         //this.equipment={} Start out unarmed;
         this.maxmana=100;
+        this.Movelist= new String[]{"Light Heal","Calming Prayer","Blessing Of Light"};
+        this.Moves=new MoveLinkedList();
 
     }
     public Whitemage(){
@@ -20,7 +23,8 @@ public class Whitemage extends Hero{
         //have attack be calculated independently
         int actual_magic=this.Magic;
         Hero ally = (Hero) other;
-        if(move == "Light Heal" ){
+        if(move == "Light Heal"&&this.getStatus()!=Status.BERSERK ){
+            
             System.out.println(this.name+' '+"used Light Heal on "+ally.name);
             int heal = 2*this.Magic+50;
             ally.regen(heal);
@@ -33,8 +37,11 @@ public class Whitemage extends Hero{
             this.Magic=this.Magic*6;
             int heal=2*this.Magic+50;
             heal=heal-victim.getDefence();
-            this.regen(heal);
             victim.takeDamage(heal);
+            this.regen((int)(.5*heal));
+            System.out.println(victim.getHp());
+            //victim.takeDamage(heal);
+            
             
 
             //does the opposite of healing and drains their hp. Problem is it can happen to anyone. Don't know who
