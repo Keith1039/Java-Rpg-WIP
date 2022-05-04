@@ -69,22 +69,23 @@ public abstract class Hero implements Entity {
     }   
 
     public void takeDamage(int damage){
+        
         if(damage < 0){
             damage=0;
         }
-        else if(damage > this.Hp){
-            this.Hp=0;
+        this.Hp=this.Hp-damage;
+        if(this.Hp<0){
             this.setStatus(Status.DEAD);
-
         }
-        else if(damage==((int)(.20*this.Hpcap)) && this.getStatus()==Status.CHARGED){
+
+        if(damage==((int)(.20*this.Hpcap)) && this.getStatus()==Status.CHARGED){
             this.setStatus(Status.STAGGERED);
             System.out.println(this.name+' '+"Was caught off guard!");
         }
         
         System.out.println(this.name+' '+"took "+Integer.toString(damage)+" damage!");
-        this.Hp=this.Hp-damage;
-        this.correctHp();;
+
+        this.correctHp();
         
         
     }
@@ -167,9 +168,15 @@ public abstract class Hero implements Entity {
         }
     }
     public void regen(int heal ){
-        this.Hp=this.Hp+heal;
-        System.out.println(this.name+' '+"healed "+Integer.toString(heal)+" HP!");
-        this.correctHp();
+        if(this.status!=Status.DEAD){
+            this.Hp=this.Hp+heal;
+            System.out.println(this.name+' '+"healed "+Integer.toString(heal)+" HP!");
+            this.correctHp();
+        }
+        else if(this.status==Status.DEAD){
+            System.out.println(this.name+' '+"is Dead and thus can't be healed!");
+        }
+
     }
 
     public void useitem(){

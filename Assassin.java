@@ -19,6 +19,7 @@ public class Assassin extends Hero{
         this.setOriginal_stats();
         this.Movelist=new String[]{"Poison Blade","Knife Volley","Dies Eres"};
         this.Moves=new MoveLinkedList();
+        this.Moves.append(this.Movelist[0]);
 
     }
     public Assassin(){
@@ -27,18 +28,20 @@ public class Assassin extends Hero{
     public void action(String move,Object other,Entity[] targets){
         
         //have attack be calculated independently
-        int actual_strength=this.Strength;
+        //int actual_strength=this.Strength;
         
         Enemy opponent = (Enemy) other;
-        if(move == "Poison Blade" && this.concentration>20){
+        if(move == "Poison Blade" && this.concentration>=20){
             int damage = (int) (this.concentration*.7+this.Strength);
             opponent.takeDamage(damage);
             opponent.setStatus(Status.POISONED);
+            this.concentration=this.concentration-20;
+
             
 
         }
         
-        else if(move == "Poisoned Blade" && this.getStatus()==Status.BERSERK && this.concentration>20 ){
+        else if(move == "Poisoned Blade" && this.getStatus()==Status.BERSERK && this.concentration>=20 ){
             int damage = (int) (this.concentration*.95+this.Strength);
             Entity victim = this.random_attack(targets);
             damage=damage-victim.getDefence();
@@ -46,18 +49,16 @@ public class Assassin extends Hero{
             victim.takeDamage(damage);
             victim.setStatus(Status.POISONED);
             this.gain_concentration(damage);
+            this.concentration=this.concentration-20;
             
             //make it able to hit anyone, maybe not themselves tho?
             /*
             opponent.takeDamage(damage);
             opponent.setStatus(Status.POISONED);
             */
-            
         }
-        
-        
-        
-        
+        this.Nullbuff();
+        this.Applybuff();
     }
     public void Applybuff(){
         //The more concentration, the higher the stat boosts. The lower the concentration, the lower the stat boosts
@@ -107,16 +108,18 @@ public class Assassin extends Hero{
         if(damage < 0){
             damage=0;
         }
-        else if(damage > this.Hp){
-            this.Hp=0;
-            this.setStatus(Status.DEAD);
-            damage=0;
-        }
         this.Hp=this.Hp-damage;
+        if(this.Hp<0){
+            this.setStatus(Status.DEAD);
+            this.setConcentration();
+        }
+        if(damage>=((int)(.20*this.Hpcap)) && this.getStatus()==Status.CHARGED){
+            this.setStatus(Status.STAGGERED);
+            System.out.println(this.name+' '+"Was caught off guard!");
+        }
         this.lose_concentration(damage);
         this.Applybuff();
-    
-        
+        this.correctHp();
     }
     public void lose_concentration(int damage){
         this.concentration=(int)(this.concentration-.5*damage);

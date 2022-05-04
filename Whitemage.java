@@ -14,6 +14,7 @@ public class Whitemage extends Hero{
         this.maxmana=100;
         this.Movelist= new String[]{"Light Heal","Calming Prayer","Blessing Of Light"};
         this.Moves=new MoveLinkedList();
+        this.Moves.append(this.Movelist[0]);
 
     }
     public Whitemage(){

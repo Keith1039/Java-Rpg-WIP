@@ -16,6 +16,7 @@ public class Warrior extends Hero {
         //this.equipment={} Start out unarmed;
         this.Movelist= new String[]{"Heavy Slash","Undying Body","Tempest strike"};
         this.Moves=new MoveLinkedList();
+        this.Moves.append(this.Movelist[0]);
     }
     public Warrior(){
         this(1,"Mark",Status.NORMAL,1,1,1,1,1,1,5,1,1);

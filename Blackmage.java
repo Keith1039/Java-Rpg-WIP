@@ -15,6 +15,7 @@ public class Blackmage extends Hero{
         this.maxmana=100;
         this.Movelist=new String[]{"Fire","Storm","Madness Enchant"};
         this.Moves=new MoveLinkedList();
+        this.Moves.append(this.Movelist[0]);
 
     }
     public Blackmage(){
