@@ -78,7 +78,7 @@ public abstract class Hero implements Entity {
             this.setStatus(Status.DEAD);
         }
 
-        if(damage==((int)(.20*this.Hpcap)) && this.getStatus()==Status.CHARGED){
+        if(damage>=((int)(.20*this.Hpcap)) && this.getStatus()==Status.CHARGED){
             this.setStatus(Status.STAGGERED);
             System.out.println(this.name+' '+"Was caught off guard!");
         }

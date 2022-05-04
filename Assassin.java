@@ -116,6 +116,7 @@ public class Assassin extends Hero{
         if(damage>=((int)(.20*this.Hpcap)) && this.getStatus()==Status.CHARGED){
             this.setStatus(Status.STAGGERED);
             System.out.println(this.name+' '+"Was caught off guard!");
+            this.setConcentration();
         }
         this.lose_concentration(damage);
         this.Applybuff();
