@@ -64,6 +64,14 @@ public class Warrior extends Hero {
         this.Defence=this.Defence+Growths[1];
         this.Exp=this.Exp-this.Expcap;
         this.Expcap=this.Expcap+50*this.level;
+        if(this.level==5){
+            this.Moves.append(this.Movelist[1]);
+            System.out.println(this.name+' '+"has learned "+"'"+this.Movelist[1]+"'!");
+        }
+        if(this.level==10){
+            this.Moves.append(this.Movelist[2]);
+            System.out.println(this.name+' '+"has learned "+"'"+this.Movelist[2]+"'!");
+        }
     }
     public String toString(){
         String result="";
