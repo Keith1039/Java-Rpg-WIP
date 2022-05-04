@@ -130,8 +130,8 @@ public class Assassin extends Hero{
         this.level++;
         //deal with growths later
         
-        this.Strength=this.Strength+Growths[0];
-        this.Defence=this.Defence+Growths[1];
+        //this.Strength=this.Strength+Growths[0];
+        //this.Defence=this.Defence+Growths[1];
         this.Exp=this.Exp-this.Expcap;
         this.Expcap=this.Expcap+50*this.level;
         this.setOriginal_stats();

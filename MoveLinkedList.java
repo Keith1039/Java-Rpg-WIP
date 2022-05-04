@@ -56,6 +56,7 @@ public class MoveLinkedList {
         Node2 traversenode=first;
         for(int i=0; i<this.size;i++){
             res+=Integer.toString(i+1)+": "+traversenode.Move+"\n";
+            traversenode=traversenode.Next;
         }
         return(res);
     }

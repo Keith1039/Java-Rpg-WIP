@@ -14,7 +14,7 @@ public class Warrior extends Hero {
         this.Growths=Growths;
         this.gauge=0; //It might be cool to make warriors stats scale with gauge. That way the player chooses between explosive dps or reliable damage?
         //this.equipment={} Start out unarmed;
-        this.Movelist= new String[]{"Heavy Slash","Undying Body","Tempest strike"};
+        this.Movelist= new String[]{"Heavy Slash","Undying Body","Tempest Strike"};
         this.Moves=new MoveLinkedList();
         this.Moves.append(this.Movelist[0]);
     }

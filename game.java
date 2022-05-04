@@ -18,6 +18,11 @@ public class game{
         TestDummy dummy = new TestDummy();
         Linkedlist turns=new Linkedlist();
 
+        for(int i=0; i<999;i++){
+        mark.levelup();
+        }
+        System.out.println(mark.printMovelist());
+        /*
         turns.push(helena);
         turns.push(Des);
         turns.push(Ried);
@@ -29,6 +34,7 @@ public class game{
         //System.out.println(helena.getStatus().toString());
         //System.out.println(Des.getStatus().toString());
         //System.out.println(dummy.getStatus().toString());
+        */
 
 
 

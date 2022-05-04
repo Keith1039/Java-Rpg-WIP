@@ -205,7 +205,7 @@ public abstract class Hero implements Entity {
     }
 
     public String printMovelist(){
-        String res=this.Movelist.toString();
+        String res=this.Moves.toString();
         return(res);
     }
 
