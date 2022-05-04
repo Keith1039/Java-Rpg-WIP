@@ -51,6 +51,10 @@ public class MoveLinkedList {
         this.size++;
     }
 
+    public int getSize(){
+        return(this.size);
+    }
+
     public String toString(){
         String res="";
         Node2 traversenode=first;
