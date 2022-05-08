@@ -3,7 +3,7 @@ public class Warrior extends Hero {
     private String Job;
     private int[] Growths;
     private int gauge;
-    private String equipment[]; //I'm thinking weapon,armor and two accesories.
+    //private String equipment[]; //I'm thinking weapon,armor and two accesories.
     //private String[] Movelist;
 
 

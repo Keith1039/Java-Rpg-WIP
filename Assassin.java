@@ -4,7 +4,7 @@ public class Assassin extends Hero{
     private String Job;
     private int[] Growths;
     private int concentration;
-    private String equipment[]; //I'm thinking weapon,armor and two accesories.
+    //private String equipment[]; //I'm thinking weapon,armor and two accesories.
     private int original_strength;
     private int original_defence;
     private int original_speed;

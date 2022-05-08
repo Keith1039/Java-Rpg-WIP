@@ -3,7 +3,7 @@ public class Whitemage extends Hero{
     private int[] Growths;
     private int mana;
     private int maxmana;
-    private String equipment[]; //I'm thinking weapon,armor and two accesories.
+    //private String equipment[]; //I'm thinking weapon,armor and two accesories.
 
     public Whitemage(int level,String name, Status status, int Hpcap, int Hp, int Strength, int Defence, int Vitality, int Magic, int Speed, int Exp, int Expcap){
         super(level, name, status, Hpcap, Hp,Strength, Defence, Vitality, Magic, Speed, Exp, Expcap);
