@@ -5,7 +5,27 @@ import java.io.*;
 public class game{
     private int gamestate=0;
     private int money=0;
+    private Assassin assassin;
+    private Whitemage whitemage;
+    private Blackmage blackmage;
+    private Warrior warrior;
     //private String[] items = null; probably make a list function for items
+
+    public game() throws IOException{
+        File file=new File("Save");
+        if(file.exists()==true){
+            this.initialize(file);
+
+        }
+        else{
+            this.assassin=new Assassin();
+            this.whitemage= new Whitemage();
+            this.blackmage = new Blackmage();
+            this.warrior= new Warrior();
+
+        }
+    }
+
 
     public static void main(String[] args) throws IOException{
         game nice= new game();
@@ -25,17 +45,22 @@ public class game{
         TestDummy dummy = new TestDummy();
         Linkedlist turns=new Linkedlist();
 
-        /*
-        for(int i=0; i<999;i++){
-        mark.levelup();
-        }
-        */
+        Warrior Antony= null;
+        Whitemage helen =null;
+        Blackmage Rein = null;
+        Assassin ezio = null;
+
+        
+
+        
+        Des.levelup();
+
         
         //System.out.println(mark.printMovelist());
         nice.save(Des, helena, Ried, mark);
 
-        nice.initialize(nice.gamestate, nice.money, new File("Save"), Des, helena, Ried, mark);
-        //mark.levelup();
+
+        
         //nice.save(Des, helena, Ried, mark);
         /*
         turns.push(helena);
@@ -155,7 +180,6 @@ public class game{
                         flag1=true;
                     }
                 }
-                System.out.println(STATUS);
                 status=(Status.valueOf(STATUS));
             }
             
@@ -196,7 +220,7 @@ public class game{
                 }
             }
 
-            if(tracker2==13){
+            if(tracker2==13 || tracker2==12 && tracker==3){
                 tracker2=0;
                 Hero target=hirros[tracker];
                 if(tracker==0){
@@ -219,19 +243,20 @@ public class game{
                 tracker++;
             }
         }
+
         scanner.close();
 
 
         return(objects);
     }
-    public void initialize(int gamestate,int money, File savefile,Assassin assassin,Whitemage whitemage,Blackmage blackmage,Warrior warrior) throws IOException{
-        Object[] objects=load(savefile);
+    public void initialize(File save_File) throws IOException{
+        Object[] objects=load(save_File);
         this.money=(int)objects[1];
         this.gamestate=(int)objects[0];
-        assassin=(Assassin)objects[2];
-        whitemage=(Whitemage)objects[3];
-        blackmage=(Blackmage)objects[4];
-        warrior=(Warrior)objects[5];
+        this.assassin=(Assassin)objects[2];
+        this.whitemage=(Whitemage)objects[3];
+        this.blackmage=(Blackmage)objects[4];
+        this.warrior=(Warrior) objects[5];
         blackmage.calculatemaxMana();
         whitemage.calculatemaxMana();
         blackmage.correctMana();
@@ -277,6 +302,7 @@ public class game{
         digitstringmod[1]=valuecap;
         return(digitstringmod);
     }
+    
 }
 
 
