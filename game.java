@@ -1,3 +1,4 @@
+
 import java.util.Random;
 import java.util.Scanner;
 import java.io.*;
@@ -222,6 +223,20 @@ public class game{
 
 
         return(objects);
+    }
+    public void load(int gamestate,int money, File savefile,Assassin assassin,Whitemage whitemage,Blackmage blackmage,Warrior warrior) throws IOException{
+        Object[] objects=load(savefile);
+        this.money=(int)objects[1];
+        this.gamestate=(int)objects[0];
+        assassin=(Assassin)objects[2];
+        whitemage=(Whitemage)objects[3];
+        blackmage=(Blackmage)objects[4];
+        warrior=(Warrior)objects[5];
+        blackmage.calculatemaxMana();
+        whitemage.calculatemaxMana();
+        blackmage.correctMana();
+        whitemage.correctMana();
+
     }
 
     public String digitstring(String string){
