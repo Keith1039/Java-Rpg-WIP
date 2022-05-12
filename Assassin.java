@@ -153,7 +153,7 @@ public class Assassin extends Hero{
         result+="level: "+this.level+"\n";
         result+="Status: "+this.status.name()+"\n";
         result+="Exp: "+Integer.toString(this.Exp)+"/"+Integer.toString(this.Expcap)+"\n";
-        result+="Health "+Integer.toString(this.Hp)+"/"+Integer.toString(this.Hpcap)+"\n";
+        result+="Health: "+Integer.toString(this.Hp)+"/"+Integer.toString(this.Hpcap)+"\n";
         result+="Concentration: "+Integer.toString(this.concentration)+"/"+Integer.toString(100)+"\n";
         result+="Strength: "+Integer.toString(this.Strength)+"(+"+Integer.toString((int)(.5*this.concentration))+")"+"\n";
         result+="Defence: "+Integer.toString(this.Defence)+"(+"+Integer.toString((int)(.5*this.concentration))+")"+"\n";

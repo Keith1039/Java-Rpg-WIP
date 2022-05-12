@@ -80,7 +80,7 @@ public class Warrior extends Hero {
         result+="level: "+this.level+"\n";
         result+="Status: "+this.status.name()+"\n";
         result+="Exp: "+Integer.toString(this.Exp)+"/"+Integer.toString(this.Expcap)+"\n";
-        result+="Health "+Integer.toString(this.Hp)+"/"+Integer.toString(this.Hpcap)+"\n";
+        result+="Health: "+Integer.toString(this.Hp)+"/"+Integer.toString(this.Hpcap)+"\n";
         result+="Gauge: "+Integer.toString(this.gauge)+"/"+Integer.toString(100)+"\n";
         result+="Strength: "+Integer.toString(this.Strength)+"\n";
         result+="Defence: "+Integer.toString(this.Defence)+"\n";

@@ -84,6 +84,7 @@ public class game{
         
     }
 
+    //right now I'm pretty sure this works but right now I'm missing an items list
     public Object[] load(File saveFile) throws IOException{ // only shows up if save file exists
         Assassin assassin=null;
         Blackmage blackmage=null;
@@ -98,28 +99,30 @@ public class game{
         objects[0]=Integer.parseInt(scanner.nextLine());
         objects[1]=Integer.parseInt(scanner.nextLine());
 
-        int level;
-        String name;
-        Status status;
-        int Hpcap;
-        int Hp;
-        int Strength;
-        int Defence;
-        int Vitality;
-        int Magic;
-        int Speed;
-        int Exp;
-        int Expcap;
+        int current_mana=0;
+        int level=0;
+        String name="";
+        Status status=Status.NORMAL;
+        int Hpcap=0;
+        int Hp=0;
+        int Strength=0;
+        int Defence=0;
+        int Vitality=0;
+        int Magic=0;
+        int Speed=0;
+        int Exp=0;
+        int Expcap=0;
 
         
         while(scanner.hasNext()==true){ //every 13 it switches to a new character, lines 2,7 don't matter
             tracker2++;
-            System.out.println(tracker2);
+            //System.out.println(tracker2);
             //System.out.println(scanner.nextLine());
+            String x = scanner.nextLine();
+         
             if(tracker2==1){
-                name=scanner.nextLine();
                 String actual_name="";
-                char[] array=name.toCharArray();
+                char[] array=x.toCharArray();
                 boolean condition =false;
 
                 for(int i =0; i<array.length;i++){
@@ -132,13 +135,87 @@ public class game{
                     condition=true;
                 }
                 }
+                name=actual_name;
             }
-            if(tracker2==5){
-                String returnable = digitstring(scanner.nextLine());
+            if(tracker2==3){
+                String returnable = digitstring(x);
                 level=Integer.parseInt(returnable);
-                //level = Integer.valueOf(returnable);
-                //System.out.println(level);
+            }
+            
+            if(tracker2==4){
+                boolean flag1 = false;
+                String STATUS ="";
+                char[] array = x.toCharArray();
+                for(int i=0;i<array.length;i++){
+                    if(flag1==true){
+                        STATUS+=array[i];
+                    }
+                    if(array[i]==' '){
+                        flag1=true;
+                    }
+                }
+                System.out.println(STATUS);
+                status=(Status.valueOf(STATUS));
+            }
+            
+            if(tracker2==5){
+                String[] value_valuecap=digitstringmod(x);
+                Exp=Integer.parseInt(value_valuecap[0]);
+                Expcap = Integer.parseInt(value_valuecap[1]);
+            }
 
+            if(tracker2==6){
+
+                String[] value_valuecap=digitstringmod(x);
+                Hp=Integer.parseInt(value_valuecap[0]);
+                Hpcap= Integer.parseInt(value_valuecap[1]);
+            }
+            //make sure to add a way for the mages mana to be recorded
+            if(tracker2==7 && tracker==1 || tracker2==7 && tracker==2){
+                String[] Manavalues=digitstringmod(x);
+                current_mana=Integer.parseInt(Manavalues[0]);
+            }
+            if(tracker2>7&&tracker2!=13){
+                String stat_val=digitstring(x);
+                int stat_num_val = Integer.parseInt(stat_val);
+                if(tracker2==8){
+                    Strength=stat_num_val;
+                }
+                if(tracker2==9){
+                    Defence=stat_num_val;
+                }
+                if(tracker2==10){
+                    Vitality=stat_num_val;
+                }
+                if(tracker2==11){
+                    Magic=stat_num_val;
+                }
+                if(tracker2==12){
+                    Speed=stat_num_val;
+                }
+            }
+
+            if(tracker2==13){
+                tracker2=0;
+                Hero target=hirros[tracker];
+                if(tracker==0){
+                    target=new Assassin(level, name, status, Hpcap, Hp, Strength, Defence, Vitality, Magic, Speed, Exp, Expcap);
+                }
+                if(tracker==1){
+                    target= new Whitemage(level, name, status, Hpcap, Hp, Strength, Defence, Vitality, Magic, Speed, Exp, Expcap);
+                    Whitemage target2 = (Whitemage) target;
+                    target2.setMana(current_mana);
+                }
+                if(tracker==2){
+                    target= new Blackmage(level, name, status, Hpcap, Hp, Strength, Defence, Vitality, Magic, Speed, Exp, Expcap);
+                    Blackmage target2 = (Blackmage) target;
+                    target2.setMana(current_mana);
+                }
+                if(tracker==3){
+                    target= new Warrior(level, name, status, Hpcap, Hp, Strength, Defence, Vitality, Magic, Speed, Exp, Expcap);
+                }
+                objects[2+tracker]=target;
+                tracker++;
             }
         }
         scanner.close();
@@ -149,7 +226,7 @@ public class game{
 
     public String digitstring(String string){
         char[] returnables = string.toCharArray();
-        String digitstring ="";
+        String digitstring =" ";
 
         for(int i=0; i<returnables.length;i++){
             Character test = returnables[i];
@@ -157,10 +234,34 @@ public class game{
                 digitstring+=returnables[i];
             }
         }
-
+        digitstring=digitstring.trim();
         return(digitstring);
     }
 
+    public String[] digitstringmod(String string){
+        char[] returnables = string.toCharArray();
+        String[]digitstringmod=new String[2];
+        boolean flip=false;
+        String value ="";
+        String valuecap="";
+        for(int i=0; i<returnables.length;i++){
+            Character test = returnables[i];
+            if(test.isDigit(returnables[i])==true && flip==false){
+                value+=returnables[i];
+            }
+            else if(test.isDigit(returnables[i])==true && flip==true){
+                valuecap+=returnables[i];
+            }
+
+            if(returnables[i]=='/'){
+                flip=true;
+            }
+
+        }
+        digitstringmod[0]=value;
+        digitstringmod[1]=valuecap;
+        return(digitstringmod);
+    }
 }
 
 

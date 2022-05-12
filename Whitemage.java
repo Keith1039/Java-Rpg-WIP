@@ -51,7 +51,7 @@ public class Whitemage extends Hero{
         
         this.Magic=actual_magic;
     }
-    public void correctMag(){
+    public void correctMana(){
         if(this.mana>this.maxmana){
             this.mana=this.maxmana;
         }
@@ -77,8 +77,12 @@ public class Whitemage extends Hero{
         original_Maxmana=(int)(this.maxmana-.5*this.Magic);
         return(original_Maxmana);
     }
-    public void calculateHpcap(){
+    public void calculatemaxMana(){
         this.maxmana=(int)(this.find_original_Maxmana()+.5*this.Magic);
+    }
+    
+    public void setMana(int current_mana){
+        this.mana=current_mana;
     }
     public String toString(){
         String result="";
@@ -87,7 +91,7 @@ public class Whitemage extends Hero{
         result+="level: "+this.level+"\n";
         result+="Status: "+this.status.name()+"\n";
         result+="Exp: "+Integer.toString(this.Exp)+"/"+Integer.toString(this.Expcap)+"\n";
-        result+="Health "+Integer.toString(this.Hp)+"/"+Integer.toString(this.Hpcap)+"\n";
+        result+="Health: "+Integer.toString(this.Hp)+"/"+Integer.toString(this.Hpcap)+"\n";
         result+="Mana: "+Integer.toString(this.mana)+"/"+Integer.toString(this.maxmana)+"\n";
         result+="Strength: "+Integer.toString(this.Strength)+"\n";
         result+="Defence: "+Integer.toString(this.Defence)+"\n";
