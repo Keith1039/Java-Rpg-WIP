@@ -6,9 +6,9 @@ public class game{
     private int gamestate=0;
     private int money=0;
     //private String[] items = null; probably make a list function for items
+
     public static void main(String[] args) throws IOException{
         game nice= new game();
-        
         /*
         JFrame frame = new JFrame("Rpg");
         frame.setVisible(true);
@@ -34,7 +34,7 @@ public class game{
         //System.out.println(mark.printMovelist());
         nice.save(Des, helena, Ried, mark);
 
-        nice.load(new File("Save"));
+        nice.initialize(nice.gamestate, nice.money, new File("Save"), Des, helena, Ried, mark);
         //mark.levelup();
         //nice.save(Des, helena, Ried, mark);
         /*
@@ -224,7 +224,7 @@ public class game{
 
         return(objects);
     }
-    public void load(int gamestate,int money, File savefile,Assassin assassin,Whitemage whitemage,Blackmage blackmage,Warrior warrior) throws IOException{
+    public void initialize(int gamestate,int money, File savefile,Assassin assassin,Whitemage whitemage,Blackmage blackmage,Warrior warrior) throws IOException{
         Object[] objects=load(savefile);
         this.money=(int)objects[1];
         this.gamestate=(int)objects[0];
