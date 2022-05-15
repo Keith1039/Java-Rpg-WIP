@@ -121,6 +121,9 @@ public abstract class Hero implements Entity {
         }
         return(result);
     }
+    public Boolean isDead(){
+        return(this.status==Status.DEAD);
+    }
     public void checkStatus(){
         Status condition=this.status;
         if(condition==Status.POISONED){

@@ -89,6 +89,9 @@ public abstract class Enemy implements Entity{
         }
         return(result);
     }
+    public Boolean isDead(){
+        return(this.status==Status.DEAD);
+    }
 
     public void setStatus(Status effect){
         this.status=effect;

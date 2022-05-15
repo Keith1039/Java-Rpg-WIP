@@ -18,8 +18,7 @@ public interface Entity {
     public int getMagic();
     public int getSpeed();
     public int getExp();
-
-
+    public Boolean isDead();
 
 
 

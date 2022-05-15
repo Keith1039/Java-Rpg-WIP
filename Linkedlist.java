@@ -1,10 +1,22 @@
 public class Linkedlist implements Stack {
     private Node<Entity> top;
     private Node<Entity> first;
+    private int size=0;
 
     public Linkedlist(){
         first=null;
         top=first;
+        size=0;
+    }
+
+    public Linkedlist(Hero[] heroes, Enemy[] enemies){
+        super();
+        for(int i=0; i<heroes.length;i++){
+            this.push(heroes[i]);
+        }
+        for(int j=0;j<enemies.length;j++){
+            this.push(enemies[j]);
+        }
     }
     public void push(Entity other){
         Node<Entity> other2= new Node<Entity>(other, null);
@@ -42,6 +54,7 @@ public class Linkedlist implements Stack {
                 right_before.setNext(other2);
             }
         }
+        size++;
         }
     }
 
@@ -71,7 +84,12 @@ public class Linkedlist implements Stack {
             first=ref;
             }
         }
+        size--;
         return(returnable);
+        
+    }
+    public int getSize(){
+        return(this.size);
     }
     /*
     public Node newTop(){
