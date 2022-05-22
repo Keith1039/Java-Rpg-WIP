@@ -1,6 +1,18 @@
 public class Binary_Item_Tree {
     private Node root;
 
+    public static void main(String[] args){
+        Binary_Item_Tree test= new Binary_Item_Tree();
+        test.push("HI");
+        test.push("HEllo");
+        test.push("HJKJGHHJGVBNJMHVGYGHGJBH");
+        test.push("Hel");
+        test.push("HS");
+        test.push("///sa");
+        test.push("3");
+        System.out.println(test);
+    }
+
     public static class Node{
         private int value;
         private int amount;
@@ -115,7 +127,7 @@ public class Binary_Item_Tree {
             return("[ ]");
         }
         Boolean flag1=false;
-        String returnable = "[ "+current_node.item_name+", ";
+        String returnable = "[ "+current_node.item_name+ " x"+Integer.toString(current_node.amount)+", ";
         
         Node right_side = current_node.greater_than;
         Node left_side= current_node.less_than;
@@ -134,7 +146,7 @@ public class Binary_Item_Tree {
             }
             right_side=right_side.greater_than;
         }
-        while(most_right!=root){
+        while(most_right!=root && most_right.item_name != null){
             if(new_pos== most_right){
                 most_right=most_right.prev;
                 tracker2=0;
@@ -157,7 +169,7 @@ public class Binary_Item_Tree {
                 tracker2=0;
             }
 
-            if(new_pos.less_than==null){
+            if(new_pos.less_than==null && new_pos.prev != null){
                 new_pos=new_pos.prev;
 
             }
@@ -173,7 +185,7 @@ public class Binary_Item_Tree {
                     right_side=right_side.greater_than;
                 }
             }
-            if(returnable.indexOf(new_pos.less_than.item_name)!=-1){
+            if(new_pos.less_than != null && returnable.indexOf(new_pos.less_than.item_name)!=-1){
                 new_pos=new_pos.prev;
             }
             
@@ -187,7 +199,8 @@ public class Binary_Item_Tree {
             left_side=left_side.less_than;
         }
         
-        while(most_left!=root){
+        while(most_left!=root && root.less_than != null){
+            new_pos= new Node();
             if(new_pos== most_left){
                 most_left=most_left.prev;
                 tracker2=0;
@@ -210,10 +223,10 @@ public class Binary_Item_Tree {
                 tracker2=0;
             }
 
-            if(new_pos.greater_than==null){
+            if(new_pos.greater_than==null && new_pos.prev!= null){
                 new_pos=new_pos.prev;
             }
-            if(new_pos.greater_than != null){
+            if(new_pos.greater_than != null && returnable.indexOf(new_pos.greater_than.item_name)==-1){
                 new_pos=new_pos.greater_than;
                 returnable+= new_pos.item_name+" x"+Integer.toString(new_pos.amount)+", ";
                 left_side=new_pos.less_than;
@@ -225,9 +238,12 @@ public class Binary_Item_Tree {
                     left_side=left_side.less_than;
                 }
             }
+            if(new_pos.greater_than!= null && returnable.indexOf(new_pos.greater_than.item_name)!=-1){
+                new_pos=new_pos.prev;
+            }
             
         }
-        returnable+=" ]";
+        returnable+="]";
         return(returnable);
     }
 
