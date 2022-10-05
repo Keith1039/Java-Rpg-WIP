@@ -1,3 +1,10 @@
+
+import java.util.Random;
+
+
+
+
+
 public class Assassin extends Hero{
     //Aka status effect hell
     //lowest stats of all but with concentration
@@ -29,20 +36,18 @@ public class Assassin extends Hero{
         
         //have attack be calculated independently
         //int actual_strength=this.Strength;
+        int damage=0;
         
         Enemy opponent = (Enemy) other;
         if(move == "Poison Blade" && this.concentration>=20){
-            int damage = (int) (this.concentration*.7+this.Strength);
+            damage = (int) (this.concentration*.7+this.Strength);
             opponent.takeDamage(damage);
             opponent.setStatus(Status.POISONED);
             this.concentration=this.concentration-20;
-
-            
-
         }
         
         else if(move == "Poisoned Blade" && this.getStatus()==Status.BERSERK && this.concentration>=20 ){
-            int damage = (int) (this.concentration*.95+this.Strength);
+            damage = (int) (this.concentration*.95+this.Strength);
             Entity victim = this.random_attack(targets);
             damage=damage-victim.getDefence();
             System.out.println(this.name+" "+"Used Venom Edge on "+victim.getName()+"!");
@@ -57,6 +62,105 @@ public class Assassin extends Hero{
             opponent.setStatus(Status.POISONED);
             */
         }
+
+        else if(move =="Knife Volley"){
+            damage = (int)(this.concentration*.60+this.Strength);
+            Entity victim = (Entity) other;
+            damage = damage-victim.getDefence();
+            Random genRandom = new Random();
+            int count =0;
+            for(int i=0;i<5;i++){
+                System.out.println(this.name+" throws a barrage of knives!");
+                if(genRandom.nextInt(100)<=60){
+                    victim.takeDamage(damage);
+                    count++;
+                    gain_concentration(damage);
+                }
+                else{
+                    System.out.println("The barrage missed!");
+                }
+            }
+            if(count >=3){
+                victim.setStatus(Status.STUNNED);
+            }
+
+        }
+        else if(move == "Knife Volley" && this.status== Status.BERSERK){
+            Random genRandom = new Random();
+            
+            for(int i=0; i<10;i++){
+                Entity victim = targets[genRandom.nextInt(targets.length)];
+                System.out.println(this.name+" throws a storm of knives!");
+                if(genRandom.nextInt(100)<=65){
+                    damage = (int)(concentration*80+this.Strength);
+                    victim.takeDamage(damage);
+                    gain_concentration(damage);
+                    
+                }
+                else{
+                    System.out.println("The attack missed!");
+                }
+
+            }
+        }
+        else if(move == "Dies Eres" && status != Status.CHARGED && status != Status.BERSERK){
+            System.out.println(this.name+' '+"is charging up!");
+            this.setStatus(Status.CHARGED);
+        }
+        else if(move == "Dies Eres" && status == Status.CHARGED){
+            Random genRandom = new Random();
+            Enemy victim = (Enemy) other;
+            if(victim.getMobtype()==Mobtype.MOB){
+                if(genRandom.nextInt(100)<=80){
+                    victim.setStatus(Status.DEAD);
+                    System.out.println(victim.getName()+' '+"Took 99999999999999999999999999999999999999 damage!");
+                }
+
+                else{
+                    victim.takeDamage(damage);
+                    damage=(int)(concentration*.9+this.Strength*1.15);
+
+                }
+            }
+            else{
+                if(genRandom.nextInt(100)<=5){
+                    victim.setStatus(Status.DEAD);
+                    System.out.println(victim.getName()+' '+"Took 999999999999999999999999999999999999999 damage!");
+                }
+                else{
+                    victim.takeDamage(damage);
+                    damage=(int)(concentration*.9+this.Strength*1.15);
+                }
+            }
+        }
+        else if(move=="Dies Eres"&& status==Status.BERSERK){
+            Random randomgen =  new Random();
+            damage=(int)(concentration*.7+this.Strength*1.15);
+            for(int i=0; i<3;i++){
+                Entity victim = targets[randomgen.nextInt(targets.length)];
+                if(i==1){//instance of hero1
+                    if(randomgen.nextInt(100)<=10){
+                        victim.setStatus(Status.DEAD);
+                        System.out.println(victim.getName()+' '+"Took 999999999999999999999999999999999999999 damage!");
+                    }
+                    else{
+                        victim.takeDamage(damage);
+                    }
+                }
+                if(i==2){ //Instance of villain
+                    //mobtype blah blah blah 100% on regular mobs, 20% on bosses
+
+                }
+            }
+            this.ResetConcentration();
+        }
+
+        
+        if(move!="Knife Volley"){
+            gain_concentration(damage);
+        }
+        
+
         this.Nullbuff();
         this.Applybuff();
     }
@@ -76,7 +180,7 @@ public class Assassin extends Hero{
         this.original_defence=this.Defence;
         this.original_speed=this.Speed;
     }
-    public void setConcentration(){
+    public void ResetConcentration(){
         //meant to be used at the start of the fight
         this.concentration=0;
     }
@@ -111,12 +215,12 @@ public class Assassin extends Hero{
         this.Hp=this.Hp-damage;
         if(this.Hp<0){
             this.setStatus(Status.DEAD);
-            this.setConcentration();
+            this.ResetConcentration();
         }
         if(damage>=((int)(.20*this.Hpcap)) && this.getStatus()==Status.CHARGED){
             this.setStatus(Status.STAGGERED);
             System.out.println(this.name+' '+"Was caught off guard!");
-            this.setConcentration();
+            this.ResetConcentration();
         }
         this.lose_concentration(damage);
         this.Applybuff();

@@ -1,0 +1,13 @@
+Potion, heals 50 Hp, 100
+Mana Potion, restores 100 Mp, 100
+High Mana Potion, restores 200 Mp, 200
+High Potion, heals 100 Hp, 150
+Calming Water, Heals Berserk Status, 100
+Saint Water, Revives ally with 50% Hp, 250
+Antitode, Cures Poisoned status, 25
+Stun Bomb, Disrupts Charged enemy, 300
+Qi Pill, Increases "Warrior" Class gauge by 50.
+Calming Pill, Increases "Assassin" Class concentration by 40
+Ward of Calamity, Protects party from Berserk Priestess skills, 500
+
+

@@ -189,6 +189,9 @@ public abstract class Hero implements Entity {
 
     }
     public void setStatus(Status effect){
+        if(this.status==Status.CHARGED && effect != Status.STUNNED || this.status== Status.CHARGED && effect != Status.SILENCED|| this.status==Status.CHARGED && effect != Status.DEAD && this.status == Status.CHARGED && effect!= Status.STAGGERED){
+            System.out.println("Opponent is unfazed!");
+        }
         this.status=effect;
     }
 

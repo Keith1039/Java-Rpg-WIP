@@ -1,18 +1,6 @@
 public class Binary_Item_Tree {
     private Node root;
 
-    public static void main(String[] args){
-        Binary_Item_Tree test= new Binary_Item_Tree();
-        test.push("HI");
-        test.push("HEllo");
-        test.push("HJKJGHHJGVBNJMHVGYGHGJBH");
-        test.push("Hel");
-        test.push("HS");
-        test.push("///sa");
-        test.push("3");
-        System.out.println(test);
-    }
-
     public static class Node{
         private int value;
         private int amount;
@@ -22,13 +10,15 @@ public class Binary_Item_Tree {
         private Node less_than;
 
         public Node(String string){
+            String numString =" ";
             item_name=string;
             char[] chars = string.toCharArray();
             this.value = 0;
             for(int i=0; i< chars.length;i++){
-                this.value+= (int)chars[i];
+                numString= Integer.toString((int)chars[i]);
             }
             this.amount=1;
+            value= Integer.parseInt(numString);
         }
         public Node(){
 

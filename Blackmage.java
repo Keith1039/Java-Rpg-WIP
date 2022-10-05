@@ -25,8 +25,9 @@ public class Blackmage extends Hero{
         //have attack be calculated independently
         int actual_magic=this.Magic;
         Enemy opponent = (Enemy) other;
+        int damage=0;
         if(move == "Fire" ){
-            int damage = 2*this.Magic+50;
+            damage = 2*this.Magic+50;
             opponent.takeDamage(damage);
 
         }
@@ -46,6 +47,31 @@ public class Blackmage extends Hero{
 
             //Boosted fire that damages everyone
             // bassically budget meteor
+        }
+        
+        //needs to be charged
+        else if(move=="Storm" && this.getStatus()!= Status.CHARGED && this.getStatus()!= Status.BERSERK){
+            this.setStatus(Status.CHARGED);
+        }
+        else if(move=="Storm" && this.getStatus()==Status.CHARGED){
+            //AOE Damage to all enemies
+
+            this.setStatus(Status.NORMAL);
+            System.out.println(this.name+' '+"used "+move);
+        }
+        else if(move=="Storm" && this.getStatus()==Status.BERSERK){
+            //5 attacks on random enemies
+            System.out.println(this.name+' '+"used Rampaging Bolt");
+            this.setStatus(Status.SILENCED);
+        }
+
+        //Turns someones status to berserk
+        else if(move=="Madness Enchant"){
+
+        }
+        //turns everyone berserk
+        else if(move=="Madness Enchant" && this.getStatus()==Status.BERSERK){
+
         }
         
         

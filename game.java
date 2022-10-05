@@ -9,6 +9,9 @@ public class game{
     private Whitemage whitemage;
     private Blackmage blackmage;
     private Warrior warrior;
+    private String[] itemshop1;
+    private String[] itemshop2;
+    private String[] itemshop3;
     //private String[] items = null; probably make a list function for items
 
     public game() throws IOException{
@@ -58,6 +61,7 @@ public class game{
         
         //System.out.println(mark.printMovelist());
         nice.save(Des, helena, Ried, mark);
+       
 
 
         
@@ -301,6 +305,10 @@ public class game{
         digitstringmod[0]=value;
         digitstringmod[1]=valuecap;
         return(digitstringmod);
+    }
+
+    public void Shop(){
+
     }
     
 }

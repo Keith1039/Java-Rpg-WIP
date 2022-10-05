@@ -20,9 +20,4 @@ public interface Entity {
     public int getExp();
     public Boolean isDead();
 
-
-
-
-
-
 }

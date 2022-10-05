@@ -1,5 +1,7 @@
+
 public abstract class Enemy implements Entity{
     protected int level;
+    protected Mobtype enemy_type;
     protected String name;
     protected Status status;
     protected int Hpcap;
@@ -11,7 +13,9 @@ public abstract class Enemy implements Entity{
     protected int Speed;
     protected int Exp;
     protected int moneyget;
-    public Enemy(int level, String name, Status status, int Hpcap, int Hp, int Strength, int Defence, int Vitality, int Magic,  int Speed, int Exp, int moneyget){
+
+    
+    public Enemy(int level, Mobtype enemy_type, String name, Status status, int Hpcap, int Hp, int Strength, int Defence, int Vitality, int Magic,  int Speed, int Exp, int moneyget){
         this.level = level;
         this.name = name;
         this.status = status;
@@ -27,6 +31,9 @@ public abstract class Enemy implements Entity{
         }
     public int getLevel(){
         return(this.level);
+    }
+    public Mobtype getMobtype(){
+        return(this.enemy_type);
     }
     public String getName(){
         return(this.name);

@@ -41,11 +41,19 @@ public class Whitemage extends Hero{
             victim.takeDamage(heal);
             this.regen((int)(.5*heal));
             System.out.println(victim.getHp());
-            //victim.takeDamage(heal);
-            
-            
+            //victim.takeDamage(heal);  
 
             //does the opposite of healing and drains their hp. Problem is it can happen to anyone. Don't know who
+        }
+        else if(move=="Calming Prayer"){
+            //revives too!
+            Entity target = (Entity)other;
+            if(target.getStatus()==Status.DEAD){ //Only used on fellow party members
+                Hero target2 = (Hero)target;
+                target2.setStatus(Status.NORMAL);
+                target2.regen((int)(.5*target.getHpcap()));
+            }
+            target.setStatus(Status.NORMAL);   
         }
         
         
